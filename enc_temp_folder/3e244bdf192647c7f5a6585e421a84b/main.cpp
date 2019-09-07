@@ -14,7 +14,6 @@ static void printHelpText();
 int main(int argc, char** argv)
 {
 	FILE* userData = NULL;
-
 	int ok = parseCmdLine(argc, argv, parseCallback, userData);
 	if (ok == ERRCODE || ok == 0)
 	{

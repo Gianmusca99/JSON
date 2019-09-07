@@ -3,7 +3,6 @@
  ******************************************************************************/
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <iostream>
 #include "parseCallback.h"
 
@@ -23,7 +22,7 @@ typedef enum { NO_ERR, ERR_ARCH, ERR_CLAVE, ERR_VALOR, ERR_NULL} errType;
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-void showErrs(errType error);
+static void showErrs(errType error);
 
 
 /*******************************************************************************
@@ -40,7 +39,7 @@ int parseCallback(char* key, char* value, void* userData)
 
 	if (key != NULL)
 	{
-		if (strcmp(ARCHIVO, key))
+		if (!strcmp(ARCHIVO, key))
 		{
 			int i = 0;
 			while (value[i] != '.')	//El nombre del archivo puede ir con un punto en el medio????
@@ -48,30 +47,37 @@ int parseCallback(char* key, char* value, void* userData)
 				i++;
 			}
 
-			if (strcmp(".json", value + i))
+			if (!strcmp(".json", value + i))
 			{
 
-				data = fopen(value, "r");
+				fopen_s(&data,value, "r");
+				if (data == NULL)
+				{
+					parseOk = NO;
+					error = ERR_ARCH;
+				}
 
 			}
 
-			error = ERR_VALOR;
+			else 
+			{
+				parseOk = NO;
+				error = ERR_VALOR;
+			}
+
 		}
 
-		error = ERR_CLAVE;
+		else
+		{
+			parseOk = NO;
+			error = ERR_CLAVE;
+		}
 	}
 
 	else
 	{
 		parseOk = NO;
 		error = ERR_NULL;
-
-	}
-
-	if (data == NULL)
-	{
-		parseOk = NO;
-		error = ERR_ARCH;
 	}
 
 	showErrs(error);
@@ -85,7 +91,7 @@ int parseCallback(char* key, char* value, void* userData)
 						LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-void showErrs(errType error) 
+static void showErrs(errType error) 
 {
 	switch (error)
 	{
@@ -112,4 +118,6 @@ void showErrs(errType error)
 		"Error desconocido";
 		break;
 	}
+
+	return;
 }
