@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="parseCmdLine.h" />
-    <ClInclude Include="patseCallback.h" />
+    <ClInclude Include="parseCallback.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="parseCallback.cpp" />

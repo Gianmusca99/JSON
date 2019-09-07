@@ -18,7 +18,7 @@
     <ClInclude Include="parseCmdLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="patseCallback.h">
+    <ClInclude Include="parseCallback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
