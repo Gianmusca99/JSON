@@ -21,6 +21,12 @@
     <ClInclude Include="parseCallback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="genericFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="parseCmdLine.cpp">
@@ -30,6 +36,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genericFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

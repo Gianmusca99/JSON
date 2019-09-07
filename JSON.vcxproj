@@ -123,11 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="genericFSM.h" />
     <ClInclude Include="parseCmdLine.h" />
     <ClInclude Include="parseCallback.h" />
+    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="genericFSM.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="parseCallback.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
   </ItemGroup>
