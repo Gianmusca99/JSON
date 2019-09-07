@@ -127,6 +127,7 @@
     <ClInclude Include="parseCallback.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="parseCallback.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
   </ItemGroup>
