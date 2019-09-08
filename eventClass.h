@@ -29,13 +29,18 @@ class eventGenerator {
 
 	public:
 		eventGenerator(int initLineCount);
-		genericEvent* getCurrentEvent(void);
+
+		//GETTERS
+		genericEvent* getLastEvent(void);
 		int getLineCount();
-		genericEvent* getNextEvent(FILE* file);
+		genericEvent getNextEvent(FILE* file);
+
+		//SETTERS
 		void setLineCount(int);
+		void setLastEvent(genericEvent*);
 
 	private:
-		genericEvent* currentEvent;
+		genericEvent* lastEvent;
 		int lineCount;
 
 };
