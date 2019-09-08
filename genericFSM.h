@@ -1,8 +1,7 @@
 #ifndef GENERICFSM_H
 #define GENERICFSM_H
 
-
-#include "eventHandling.h"
+#include "eventClass.h"
 #include "types.h"
 
 class genericFSM;
@@ -20,8 +19,6 @@ class genericFSM
 
 	genericFSM(const fsmCell* const table, const uint rows, const uint cols, stateTypes initState);
 	void cycle(genericEvent* ev);
-	genericEvent* getEvent();
-
 
 	private:
 	stateTypes state;

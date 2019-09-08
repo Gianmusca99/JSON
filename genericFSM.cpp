@@ -1,5 +1,6 @@
 #include <iostream>
 #include "genericFSM.h"
+#include "eventClass.h"
 
 
 using stateTypes = uint;
@@ -18,8 +19,3 @@ void genericFSM::cycle(genericEvent* ev)
 	return;
 }
 
-
-genericEvent* genericFSM::getEvent()
-{
-	return fsmEvent;
-}

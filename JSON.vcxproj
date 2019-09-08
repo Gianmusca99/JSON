@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="eventClass.h" />
     <ClInclude Include="genericFSM.h" />
     <ClInclude Include="parseCmdLine.h" />
     <ClInclude Include="parseCallback.h" />
     <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="eventClass.cpp" />
     <ClCompile Include="genericFSM.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="object.cpp" />
