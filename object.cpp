@@ -2,7 +2,7 @@
 #include "genericFSM.h"
 #include "eventClass.h"
 
-enum objStates: stateTypes {Init};
+enum objStates: stateType {Init};
 
 class objectFSM;
 

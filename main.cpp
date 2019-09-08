@@ -15,14 +15,14 @@ int main(int argc, char** argv)
 {
 	FILE* userData = NULL;
 
-	int ok = parseCmdLine(argc, argv, parseCallback, userData);
-	if (ok == ERRCODE || ok == 0)
+	int isValid = parseCmdLine(argc, argv, parseCallback, userData);
+	if (isValid == ERRCODE ||  isValid == 0)
 	{
 		printHelpText();
 		return 0;
 	}
 
-	fclose(userData);
+	//fclose(userData);
 	return 0;
 }
 

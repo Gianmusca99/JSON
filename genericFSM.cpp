@@ -3,9 +3,7 @@
 #include "eventClass.h"
 
 
-using stateTypes = uint;
-
-genericFSM::genericFSM(const fsmCell* const table, const uint rows, const uint cols, stateTypes initState) :
+genericFSM::genericFSM(const fsmCell* const table, const uint rows, const uint cols, stateType initState) :
 	FSMTable(table), rowCount(rows), colCount(cols), state(initState) { 
 }
 

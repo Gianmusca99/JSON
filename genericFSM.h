@@ -5,11 +5,11 @@
 #include "types.h"
 
 class genericFSM;
-using stateTypes = uint;
+using stateType = uint;
 
 struct fsmCell
 {
-	stateTypes nextState;
+	stateType nextState;
 	void (genericFSM::* action) (genericEvent*);
 };
 
@@ -17,11 +17,11 @@ class genericFSM
 {
 	public:
 
-	genericFSM(const fsmCell* const table, const uint rows, const uint cols, stateTypes initState);
+	genericFSM(const fsmCell* const table, const uint rows, const uint cols, stateType initState);
 	void cycle(genericEvent* ev);
 
 	private:
-	stateTypes state;
+	stateType state;
 	const uint rowCount;
 	const uint colCount;
 	const fsmCell* const FSMTable;
