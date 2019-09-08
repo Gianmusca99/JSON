@@ -50,5 +50,8 @@
     <ClCompile Include="eventClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="valueFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

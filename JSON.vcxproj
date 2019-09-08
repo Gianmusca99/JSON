@@ -136,6 +136,7 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="parseCallback.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
+    <ClCompile Include="valueFSM.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

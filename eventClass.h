@@ -3,7 +3,7 @@
 class genericEvent;
 class eventGenerator;
 
-enum events {EV_QUIT, EV_INIT, EV_CHAR};		//nose aca vamos agregando
+enum events {EV_QUIT, EV_INIT, EV_CHAR, NO_EVENT};		//nose aca vamos agregando
 
 /***************************************************************
 *						GENERIC EVENT

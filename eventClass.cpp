@@ -44,18 +44,25 @@ int eventGenerator::getLineCount(void) {
 }
 
 genericEvent eventGenerator::getNextEvent(FILE* file) {
-	char c;
+	short c;
 	genericEvent currentEvent;
-	if ((c = fgetc(file)) != EOF) {
-		while (c != ' ') {
+	if ((c = fgetc(file)) != EOF) 
+	{
+		if (c == ' ' || c == '\t')
+		{
+			currentEvent.setType(NO_EVENT);
+			currentEvent.setKey(NULL);
+		}
+		else
+		{
 			currentEvent.setType(EV_CHAR);
 			currentEvent.setKey(c);
-			break;
 		}
 	}
-	else {
+	else 
+	{
 		currentEvent.setType(EV_QUIT);
-		currentEvent.setKey(c);
+		currentEvent.setKey(NULL);
 	}
 	
 	return currentEvent;
