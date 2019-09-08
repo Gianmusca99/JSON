@@ -24,7 +24,7 @@ class genericFSM
 	stateType state;
 	const uint rowCount;
 	const uint colCount;
-	const fsmCell* const FSMTable;
+	fsmCell* const FSMTable;
 
 };
 

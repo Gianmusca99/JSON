@@ -30,6 +30,9 @@
     <ClInclude Include="eventClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="valueFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="parseCmdLine.cpp">
@@ -51,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="valueFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stringFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

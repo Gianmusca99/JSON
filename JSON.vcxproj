@@ -128,6 +128,7 @@
     <ClInclude Include="parseCmdLine.h" />
     <ClInclude Include="parseCallback.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="valueFSM.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="eventClass.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="parseCallback.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
+    <ClCompile Include="stringFSM.cpp" />
     <ClCompile Include="valueFSM.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
