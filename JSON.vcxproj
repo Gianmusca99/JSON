@@ -134,7 +134,7 @@
     <ClCompile Include="eventClass.cpp" />
     <ClCompile Include="genericFSM.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="object.cpp" />
+    <ClCompile Include="objectFSM.cpp" />
     <ClCompile Include="parseCallback.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
     <ClCompile Include="stringFSM.cpp" />

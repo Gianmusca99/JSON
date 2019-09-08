@@ -30,9 +30,6 @@
     <ClInclude Include="eventClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="valueFSM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="parseCmdLine.cpp">
@@ -47,16 +44,13 @@
     <ClCompile Include="genericFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="eventClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="valueFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stringFSM.cpp">
+    <ClCompile Include="objectFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
