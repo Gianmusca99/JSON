@@ -47,24 +47,18 @@ int eventGenerator::getLineCount(void) {
 	return lineCount;
 }
 
-genericEvent* eventGenerator::getNextEvent() {
-	short c;
-	if ((c = fgetc(file)) != EOF) 
-	{
-		if (c == ' ' || c == '\t')
-		{
-			currentEvent->setKey(NULL);
-		}
-		else
-		{
-			currentEvent->setKey(c);
-		}
-	}
-	else 
+genericEvent* eventGenerator::getNextEvent() 
+{
+	short c = fgetc(file);
+	if (c == ' ' || c == '\t')
 	{
 		currentEvent->setKey(NULL);
+		currentEvent->setEvValue(NO_VALUE);
 	}
-	
+	else
+	{
+		currentEvent->setKey(c);
+	}	
 	return currentEvent;
 }
 

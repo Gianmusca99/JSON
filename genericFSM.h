@@ -4,9 +4,6 @@
 #include "eventClass.h"
 #include "types.h"
 
-#define NO_VALUE -2
-#define END -1
-
 class genericFSM;
 using stateType = uint;
 using eventType = uint;
@@ -14,7 +11,7 @@ using eventType = uint;
 struct fsmCell
 {
 	stateType nextState;
-	void (genericFSM::* action) (genericEvent*);
+	void (genericFSM::*action) (genericEvent*);
 };
 
 class genericFSM 
@@ -33,6 +30,7 @@ class genericFSM
 	uint lineCount;
 	uint colCount;
 	const fsmCell* FSMTable;
+	void (genericFSM::* assignValue) (genericEvent*);
 
 };
 
