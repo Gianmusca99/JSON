@@ -20,11 +20,6 @@ class stringFSM : public genericFSM
 			{{INS_STRING, TX(nothing)},		{INS_STRING, TX(nothing)},	{FINISH, TX(error)},	{INS_STRING, TX(nothing)}}		 //State CTRL_CHAR
 		};
 
-		void nothing(genericEvent* ev)
-		{
-			return;
-		}
-
 		void error(genericEvent* ev)
 		{
 			ev->setKey(NULL);

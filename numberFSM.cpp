@@ -23,10 +23,6 @@ private:
 		{ {EXPONENT, TX(nothing)},	{INTEGER, TX(nothing)},		{EXPONENT, TX(nothing)},	{EXPONENT, TX(nothing)},	{FINIT, TX(error)},			{FINIT, TX(error)},			{FINIT, TX(end)}	},	//EXPONENT
 	};
 
-	void nothing(genericEvent* ev) {
-		return;
-	}
-
 	void error(genericEvent* ev)
 	{
 		ev->setKey(NULL);

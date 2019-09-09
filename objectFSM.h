@@ -36,7 +36,6 @@ class objectFSM : public genericFSM
 	};
 
 	void error(genericEvent* ev);
-	void nothing(genericEvent* ev);
 	void end(genericEvent* ev);
 
 };

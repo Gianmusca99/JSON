@@ -36,3 +36,7 @@ stateType genericFSM::getState(void)
 	return state;
 }
 
+void genericFSM::nothing(genericEvent* ev)
+{
+	return;
+}

@@ -14,11 +14,6 @@ void objectFSM::error(genericEvent* ev)
 	return;
 }
 
-void objectFSM::nothing(genericEvent* ev)
-{
-	return;
-}
-
 void objectFSM::end(genericEvent* ev)
 {
 	ev->setType(EV_QUIT);

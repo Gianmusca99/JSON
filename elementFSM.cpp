@@ -8,11 +8,6 @@ void elementFSM::nextFSM(genericEvent* ev)
 	}
 }
 
-void elementFSM::nothing(genericEvent* ev)
-{
-	return;
-}
-
 void elementFSM::end(genericEvent* ev)
 {
 
