@@ -11,7 +11,7 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, END };
+enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER};
 typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, O_BRACE } objectEvents;
 
 /*******************************************************************************
@@ -21,12 +21,15 @@ class objectFSM;
 
 class objectFSM : public genericFSM
 {
+	public:
+	
+	objectFSM() : genericFSM(&objectTable[0][0], 5, 6, INIT_OBJ) {}
 
 	private:
 
 	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&objectFSM::x))
 
-	const fsmCell fsmTable[5][6] = {
+	const fsmCell objectTable[5][6] = {
 		//Event "				Event ,						Event :					Event EOF				Invalid char		Event }
 		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(nothing)}	},	//State INIT_OBJ
 		{{END,TX(error)},		{END,TX(error)},			{VALUE,TX(end)},		{END,TX(error)},		{END,TX(error)},	{STRING,TX(end)}	},	//State STRING

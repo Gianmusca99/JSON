@@ -2,11 +2,18 @@
 #include "genericFSM.h"
 #include "eventClass.h"
 
+genericFSM::genericFSM(void)
+{
+	FSMTable = NULL;
+	lineCount = 0;
+	colCount = 0;
+	state = NULL;
+}
 
-genericFSM::genericFSM(const fsmCell* table, uint rows, uint cols, stateType initState)
+genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState)
 {
 	FSMTable = table;
-	rowCount = rows;
+	lineCount = lines;
 	colCount = cols;
 	state = initState;
 }
@@ -16,12 +23,12 @@ void genericFSM::cycle(eventGenerator* generator)
 	genericEvent* ev;
 	int value;
 
-	while (generator->getLastEvent()->getType() != EV_QUIT)
+	while (state != END)
 	{
 		ev = generator->getNextEvent();
 		value = ev->getEvValue();
 
-		if (ev->getType() != NO_EVENT)
+		if (value != NO_VALUE)
 		{
 			FSMTable[state * colCount + value].action;
 			state = FSMTable[state*colCount + value].nextState;
@@ -39,4 +46,9 @@ stateType genericFSM::getState(void)
 void genericFSM::nothing(genericEvent* ev)
 {
 	return;
+}
+
+void genericFSM::setFSMTable(const fsmCell* newTable)
+{
+	FSMTable = newTable;
 }

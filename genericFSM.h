@@ -4,6 +4,9 @@
 #include "eventClass.h"
 #include "types.h"
 
+#define NO_VALUE -2
+#define END -1
+
 class genericFSM;
 using stateType = uint;
 using eventType = uint;
@@ -18,14 +21,16 @@ class genericFSM
 {
 	public:
 
-	genericFSM(const fsmCell* table, uint rows, uint cols, stateType initState);
+	genericFSM();
+	genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState);
+	void setFSMTable(const fsmCell*);
 	void cycle(eventGenerator* generator);
 	void nothing(genericEvent* ev);
 	stateType getState(void);
 
 	private:
 	stateType state;
-	uint rowCount;
+	uint lineCount;
 	uint colCount;
 	const fsmCell* FSMTable;
 
