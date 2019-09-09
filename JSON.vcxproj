@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="eventClass.h" />
     <ClInclude Include="genericFSM.h" />
+    <ClInclude Include="objectFSM.h" />
     <ClInclude Include="parseCmdLine.h" />
     <ClInclude Include="parseCallback.h" />
     <ClInclude Include="types.h" />

@@ -1,55 +1,37 @@
-#include <iostream>
-#include "genericFSM.h"
-#include "eventClass.h"
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
+#include "objectFSM.h"
 
-enum objStates: stateType {INIT_OBJ, STRING, VALUE, MEMBER, OTHER_OBJ, END};
-typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, KEY} objectEvents;
-
-
-class objectFSM;
-
-class objectFSM : public genericFSM
+/*******************************************************************************
+* PRIVATE METHODS
+******************************************************************************/
+void objectFSM::string(genericEvent* ev) 
 {
-	private:
 
-	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&objectFSM::x))
+	return;
+}
 
-		const fsmCell fsmTable[5][6] = {
-				//Event "					Event ,						Event :					Event EOF			Invalid char		Event }
-				{{STRING,TX(string)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},	{END,TX(error)},	{OTHER_OBJ,TX(nothing)}},		//State INIT_OBJ
-				{{END,TX(error)},			{END,TX(error)},			{VALUE,TX(value)},		{END,TX(error)},	{END,TX(error)},	{STRING,TX(string)}},			//Sate STRING
-				{{END,TX(error)},			{MEMBER,TX(nothing)},		{END,TX(error)},		{END,TX(error)},	{END,TX(error)},	{OTHER_OBJ,TX(nothing)}},		//State VALUE
-				{{STRING,TX(string)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},	{END,TX(error)},	{END,TX(error)}},				//State MEMBER
-				{{END,TX(error)},			{INIT_OBJ,TX(nothing)},		{END,TX(error)},		{END,TX(end)},		{END,TX(error)},	{END,TX(error)}},				//State OTHER_OBJ
-		};	
+void objectFSM::value(genericEvent* ev)
+{
+	return;
+}
 
-		void string(genericEvent* ev) 
-		{
+void objectFSM::error(genericEvent* ev)
+{
+	ev->setType(EV_ERROR);
+	ev->setKey(NULL);
+	return;
+}
 
-			return;
-		}
+void objectFSM::nothing(genericEvent* ev)
+{
+	return;
+}
 
-		void value(genericEvent* ev)
-		{
-			return;
-		}
-
-		void error(genericEvent* ev)
-		{
-			ev->setType(EV_ERROR);
-			ev->setKey(NULL);
-			return;
-		}
-
-		void nothing(genericEvent* ev)
-		{
-			return;
-		}
-
-		void end(genericEvent* ev)
-		{
-			ev->setType(EV_QUIT);
-			ev->setKey(NULL);
-			return;
-		}
-};
+void objectFSM::end(genericEvent* ev)
+{
+	ev->setType(EV_QUIT);
+	ev->setKey(NULL);
+	return;
+}
