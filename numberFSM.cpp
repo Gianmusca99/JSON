@@ -3,6 +3,7 @@
 #include "eventClass.h"
 
 #define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&numberFSM::x))
+
 enum numberStates : stateType { INIT, CERO, INTEGER, FRACTION, EXPONENT, FINIT };
 typedef enum { DIGIT, CERO, MINUS, PLUS, POINT, EXP, COMMA} numberEvents;
 

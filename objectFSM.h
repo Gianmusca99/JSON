@@ -11,8 +11,8 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, OTHER_OBJ, END };
-typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, KEY } objectEvents;
+enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, END };
+typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, O_BRACE } objectEvents;
 
 /*******************************************************************************
  * CLASS PROTOTYPE
@@ -27,12 +27,11 @@ class objectFSM : public genericFSM
 	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&objectFSM::x))
 
 	const fsmCell fsmTable[5][6] = {
-		//Event "					Event ,						Event :					Event EOF			Invalid char		Event }
-		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{OTHER_OBJ,TX(nothing)}},		//State INIT_OBJ
-		{{END,TX(error)},		{END,TX(error)},			{VALUE,TX(end)},		{END,TX(error)},		{END,TX(error)},	{STRING,TX(end)}},				//State STRING
-		{{END,TX(error)},		{MEMBER,TX(nothing)},		{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{OTHER_OBJ,TX(nothing)}},		//State VALUE
-		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(error)}},				//State MEMBER
-		{{END,TX(error)},		{INIT_OBJ,TX(nothing)},		{END,TX(error)},		{END,TX(end)},			{END,TX(error)},	{END,TX(error)}},				//State OTHER_OBJ
+		//Event "				Event ,						Event :					Event EOF				Invalid char		Event }
+		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(nothing)}	},	//State INIT_OBJ
+		{{END,TX(error)},		{END,TX(error)},			{VALUE,TX(end)},		{END,TX(error)},		{END,TX(error)},	{STRING,TX(end)}	},	//State STRING
+		{{END,TX(error)},		{MEMBER,TX(nothing)},		{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(nothing)}	},	//State VALUE
+		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(error)}		}	//State MEMBER
 	};
 
 	void error(genericEvent* ev);

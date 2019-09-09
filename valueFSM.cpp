@@ -2,12 +2,12 @@
 #include "genericFSM.h"
 #include "eventClass.h"
 
-enum valueStates: stateType {Init};
-
-class valueFSM;
-
-class valueFSM : public genericFSM
+void error(genericEvent* ev) 
 {
-	private:
-		
-};
+	return;
+}
+
+void end(genericEvent* ev)
+{
+	return;
+}
