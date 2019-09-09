@@ -5,6 +5,7 @@ class eventGenerator;
 
 #define NO_VALUE -2
 #define END -1
+#define ERROR -39
 
 
 /***************************************************************

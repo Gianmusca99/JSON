@@ -24,15 +24,6 @@ private:
 		{ {EXPONENT, TX(nothing)},	{INTEGER, TX(nothing)},		{EXPONENT, TX(nothing)},	{EXPONENT, TX(nothing)},	{FINIT, TX(error)},			{FINIT, TX(error)},			{FINIT, TX(end)}	},	//EXPONENT
 	};
 
-	void error(genericEvent* ev)
-	{
-		ev->setKey(NULL);
-	}
-
-	void end(genericEvent* ev)
-	{
-		ev->setKey(NULL);
-	}
 
 public:
 	numberFSM() :genericFSM(&fsmTable[0][0], 5, 7, INIT) {}
