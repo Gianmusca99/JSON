@@ -13,12 +13,15 @@ class genericEvent {
 	public:
 		genericEvent(int initType, char initKey);
 		int getType();
+		int getEvValue();
 		char getKey();
 		void setType(int);
+		void setEvValue(int);
 		void setKey(char);
 
 	private:
 		int type;
+		int evValue;
 		char key;
 };
 
@@ -32,15 +35,18 @@ class eventGenerator {
 
 		//GETTERS
 		genericEvent* getLastEvent(void);
+		genericEvent* getNextEvent(void);
 		int getLineCount();
-		genericEvent getNextEvent(FILE* file);
 
 		//SETTERS
 		void setLineCount(int);
 		void setLastEvent(genericEvent*);
+		void setFilePointer(FILE*);
 
 	private:
 		genericEvent* lastEvent;
+		genericEvent* currentEvent;
 		int lineCount;
+		FILE* file;
 
 };

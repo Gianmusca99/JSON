@@ -11,7 +11,7 @@ class stringFSM;
 
 class stringFSM : public genericFSM
 {
-	public:
+	private:
 
 		const fsmCell stringTable[3][4] =
 		{	//   Event validChar,           Event '\',            Event unvalidChar,      Event '"'
@@ -19,12 +19,6 @@ class stringFSM : public genericFSM
 			{{INS_STRING, TX(nothing)},{CTRL_CHAR, TX(nothing)},{FINISH, TX(error)},{FINISH, TX(end)}},			//State INS_STRING
 			{{INS_STRING, TX(nothing)},{INS_STRING, TX(nothing)},{FINISH, TX(error)},{INS_STRING, TX(nothing)}} //State CTRL_CHAR
 		};
-
-
-	private:
-
-		genericEvent evento;
-		genericEvent* ev = &evento;
 
 		void nothing(genericEvent* ev)
 		{
