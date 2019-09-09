@@ -3,6 +3,9 @@
 class genericEvent;
 class eventGenerator;
 
+#define NO_VALUE -2
+#define END -1
+
 
 /***************************************************************
 *						GENERIC EVENT
