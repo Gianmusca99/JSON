@@ -1,13 +1,11 @@
-#include <iostream>
-#include "genericFSM.h"
-#include "eventClass.h"
+#include "valueFSM.h"
 
-void error(genericEvent* ev) 
+void valueFSM::error(genericEvent* ev) 
 {
 	return;
 }
 
-void end(genericEvent* ev)
+void valueFSM::end(genericEvent* ev)
 {
 	return;
 }

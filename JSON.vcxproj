@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="arrayFSM.h" />
     <ClInclude Include="elementFSM.h" />
     <ClInclude Include="eventClass.h" />
     <ClInclude Include="genericFSM.h" />

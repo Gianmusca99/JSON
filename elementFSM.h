@@ -26,7 +26,7 @@ private:
 
 #define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&elementFSM::x))
 
-	const fsmCell fsmTable[7][7] = {
+	const fsmCell fsmTable[7][8] = {
 		//Event "					Event {						Event [					Event true			Event false				Event number			Event ','						Event EOF
 		{{STRING,TX(nextFSM)},	{OBJECT,TX(nextFSM)},		{ARRAY,TX(nextFSM)},	{TRUE,TX(nextFSM)},		{FALSE,TX(nextFSM)},	{NUMBER,TX(nextFSM)},	{INIT_ELEMENT, TX(nothing)},	{END, TX(end)}}		//State INIT_ELEMENT
 	};
