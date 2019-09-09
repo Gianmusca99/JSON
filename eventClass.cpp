@@ -32,6 +32,7 @@ void genericEvent::setKey(char newKey) {
 ***************************************************************/
 eventGenerator::eventGenerator(int initLineCount = 0) {
 	lastEvent = new genericEvent;
+	currentEvent = new genericEvent;
 	lineCount = initLineCount;
 }
 
@@ -43,26 +44,25 @@ int eventGenerator::getLineCount(void) {
 	return lineCount;
 }
 
-genericEvent eventGenerator::getNextEvent(FILE* file) {
+genericEvent* eventGenerator::getNextEvent() {
 	short c;
-	genericEvent currentEvent;
 	if ((c = fgetc(file)) != EOF) 
 	{
 		if (c == ' ' || c == '\t')
 		{
-			currentEvent.setType(NO_EVENT);
-			currentEvent.setKey(NULL);
+			currentEvent->setType(NO_EVENT);
+			currentEvent->setKey(NULL);
 		}
 		else
 		{
-			currentEvent.setType(EV_CHAR);
-			currentEvent.setKey(c);
+			currentEvent->setType(EV_CHAR);
+			currentEvent->setKey(c);
 		}
 	}
 	else 
 	{
-		currentEvent.setType(EV_QUIT);
-		currentEvent.setKey(NULL);
+		currentEvent->setType(EV_QUIT);
+		currentEvent->setKey(NULL);
 	}
 	
 	return currentEvent;
@@ -77,4 +77,9 @@ void eventGenerator::setLastEvent(genericEvent* event)
 {
 	lastEvent->setKey(event->getKey());
 	lastEvent->setType(event->getType());
+}
+
+void eventGenerator::setFilePointer(FILE* newFile)
+{
+	file = newFile;
 }

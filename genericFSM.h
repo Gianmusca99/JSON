@@ -6,6 +6,7 @@
 
 class genericFSM;
 using stateType = uint;
+using eventType = uint;
 
 struct fsmCell
 {
@@ -17,14 +18,14 @@ class genericFSM
 {
 	public:
 
-	genericFSM(const fsmCell* const table, const uint rows, const uint cols, stateType initState);
-	void cycle(genericEvent* ev);
+	genericFSM(const fsmCell* table, uint rows, uint cols, stateType initState);
+	void cycle(eventGenerator* generator);
 
 	private:
 	stateType state;
-	const uint rowCount;
-	const uint colCount;
-	fsmCell* const FSMTable;
+	uint rowCount;
+	uint colCount;
+	const fsmCell* FSMTable;
 
 };
 
