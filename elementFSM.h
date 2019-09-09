@@ -11,7 +11,7 @@
  /*******************************************************************************
   * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
   ******************************************************************************/
-enum elementStates : stateType { INIT_OBJ, STRING, OBJECT, ARRAY, TRUE, FALSE, NUMBER, END };
+enum elementStates : stateType { INIT_ELEMENT, STRING, OBJECT, ARRAY, TRUE, FALSE, NUMBER, END };
 typedef enum { QUOTES, O_BRACE, O_BRACKETS, O_TRUE, O_FALSE, O_NUMBER, _EOF } elementEvents;
 
 /*******************************************************************************
@@ -32,7 +32,6 @@ private:
 	};
 
 	void nextFSM(genericEvent* ev);
-	void nothing(genericEvent* ev);
 	void end(genericEvent* ev);
 
 };
