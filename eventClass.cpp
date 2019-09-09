@@ -6,15 +6,11 @@ using namespace std;
 /***************************************************************
 *						GENERIC EVENT
 ***************************************************************/
-genericEvent::genericEvent(int initType = 0, int initEvValue = 0, char initKey = '\0') {
-	type = initType;
+genericEvent::genericEvent(int initEvValue = 0, char initKey = '\0') {
 	evValue = initEvValue;
 	key = initKey;
 }
 
-int genericEvent::getType(void) {
-	return type;
-}
 
 int genericEvent::getEvValue(void) {
 	return evValue;
@@ -24,9 +20,6 @@ char genericEvent::getKey(void) {
 	return key;
 }
 
-void genericEvent::setType(int newType) {
-	type = newType;
-}
 
 void genericEvent::setEvValue(int newEvValue) {
 	evValue = newEvValue;
@@ -60,18 +53,15 @@ genericEvent* eventGenerator::getNextEvent() {
 	{
 		if (c == ' ' || c == '\t')
 		{
-			currentEvent->setType(NO_EVENT);
 			currentEvent->setKey(NULL);
 		}
 		else
 		{
-			currentEvent->setType(EV_CHAR);
 			currentEvent->setKey(c);
 		}
 	}
 	else 
 	{
-		currentEvent->setType(EV_QUIT);
 		currentEvent->setKey(NULL);
 	}
 	
@@ -86,7 +76,7 @@ void eventGenerator::setLineCount(int newLineCount) {
 void eventGenerator::setLastEvent(genericEvent* event)
 {
 	lastEvent->setKey(event->getKey());
-	lastEvent->setType(event->getType());
+	lastEvent->setEvValue(event->getEvValue());
 }
 
 void eventGenerator::setFilePointer(FILE* newFile)

@@ -31,4 +31,8 @@ void genericFSM::cycle(eventGenerator* generator)
 	return;
 }
 
+stateType genericFSM::getState(void)
+{
+	return state;
+}
 

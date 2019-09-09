@@ -18,11 +18,11 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 {
 	private:
 
-	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&objectFSM::x))
+	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&valueFSM::x))
 
 	const fsmCell fsmTable[3][9] = {
 		//Event "			Event INT			Event {				Event [				Event "True"		Event "False"		Event "NULL"		Event EOF			Event unvalid
-		{{IN,TX(string)},	{IN,TX(number)},	{IN,TX(object)},	{IN,TX(array_)},	{IN,TX(true_)},		{IN,TX(false_)},	{IN,TX(null)},		{END,TX(error)},	{END,TX(error)}},		//State INIT_VAL
+		{{IN,TX(string)},	{IN,TX(number)},	{IN,TX(object)},	{IN,TX(array_)},	{IN,TX(true_)},		{IN,TX(false_)},	{IN,TX(null)},		{END,TX(error)},	{END,TX(error)}},	//State INIT_VAL
 		{{END,TX(error)},	{END,TX(error)},	{END,TX(error)},,	{END,TX(error)},	{END,TX(error)},	{END,TX(error)},	{END,TX(error)},	{END,TX(error)},	{END,TX(error)}},	//State IN
 	};
 

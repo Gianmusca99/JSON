@@ -33,6 +33,12 @@
     <ClInclude Include="valueFSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="objectFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="elementFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="parseCmdLine.cpp">
@@ -60,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="numberFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="elementFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

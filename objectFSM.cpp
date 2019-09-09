@@ -6,16 +6,6 @@
 /*******************************************************************************
 * PRIVATE METHODS
 ******************************************************************************/
-void objectFSM::string(genericEvent* ev) 
-{
-
-	return;
-}
-
-void objectFSM::value(genericEvent* ev)
-{
-	return;
-}
 
 void objectFSM::error(genericEvent* ev)
 {

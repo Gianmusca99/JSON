@@ -3,7 +3,6 @@
 class genericEvent;
 class eventGenerator;
 
-enum events {EV_QUIT, EV_INIT, EV_CHAR, EV_ERROR, NO_EVENT};		//nose aca vamos agregando
 
 /***************************************************************
 *						GENERIC EVENT
@@ -11,16 +10,13 @@ enum events {EV_QUIT, EV_INIT, EV_CHAR, EV_ERROR, NO_EVENT};		//nose aca vamos a
 class genericEvent {
 
 	public:
-		genericEvent(int initType, int initEvValue, char initKey);
-		int getType();
+		genericEvent(int initEvValue, char initKey);
 		int getEvValue();
 		char getKey();
-		void setType(int);
 		void setEvValue(int);
 		void setKey(char);
 
 	private:
-		int type;
 		int evValue;
 		char key;
 };

@@ -20,6 +20,7 @@ class genericFSM
 
 	genericFSM(const fsmCell* table, uint rows, uint cols, stateType initState);
 	void cycle(eventGenerator* generator);
+	stateType getState(void);
 
 	private:
 	stateType state;

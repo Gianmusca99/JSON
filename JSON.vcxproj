@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="elementFSM.h" />
     <ClInclude Include="eventClass.h" />
     <ClInclude Include="genericFSM.h" />
     <ClInclude Include="objectFSM.h" />
@@ -132,6 +133,7 @@
     <ClInclude Include="valueFSM.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="elementFSM.cpp" />
     <ClCompile Include="eventClass.cpp" />
     <ClCompile Include="genericFSM.cpp" />
     <ClCompile Include="main.cpp" />
