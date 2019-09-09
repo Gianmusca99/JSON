@@ -6,13 +6,18 @@ using namespace std;
 /***************************************************************
 *						GENERIC EVENT
 ***************************************************************/
-genericEvent::genericEvent(int initType = 0, char initKey = '\0') {
+genericEvent::genericEvent(int initType = 0, int initEvValue = 0, char initKey = '\0') {
 	type = initType;
+	evValue = initEvValue;
 	key = initKey;
 }
 
 int genericEvent::getType(void) {
 	return type;
+}
+
+int genericEvent::getEvValue(void) {
+	return evValue;
 }
 
 char genericEvent::getKey(void) {
@@ -23,6 +28,10 @@ void genericEvent::setType(int newType) {
 	type = newType;
 }
 
+void genericEvent::setEvValue(int newEvValue) {
+	evValue = newEvValue;
+}
+
 void genericEvent::setKey(char newKey) {
 	key = newKey;
 }
@@ -30,10 +39,11 @@ void genericEvent::setKey(char newKey) {
 /***************************************************************
 *						EVENT GENERATOR
 ***************************************************************/
-eventGenerator::eventGenerator(int initLineCount = 0) {
+eventGenerator::eventGenerator(int initLineCount = 0, FILE* initFile = NULL) {
 	lastEvent = new genericEvent;
 	currentEvent = new genericEvent;
 	lineCount = initLineCount;
+	file = initFile;
 }
 
 genericEvent* eventGenerator::getLastEvent(void) {

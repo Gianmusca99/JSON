@@ -11,7 +11,7 @@ enum events {EV_QUIT, EV_INIT, EV_CHAR, EV_ERROR, NO_EVENT};		//nose aca vamos a
 class genericEvent {
 
 	public:
-		genericEvent(int initType, char initKey);
+		genericEvent(int initType, int initEvValue, char initKey);
 		int getType();
 		int getEvValue();
 		char getKey();
@@ -31,7 +31,7 @@ class genericEvent {
 class eventGenerator {
 
 	public:
-		eventGenerator(int initLineCount);
+		eventGenerator(int initLineCount, FILE* initFile);
 
 		//GETTERS
 		genericEvent* getLastEvent(void);
