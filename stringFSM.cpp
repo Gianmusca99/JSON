@@ -14,10 +14,10 @@ class stringFSM : public genericFSM
 	private:
 
 		const fsmCell stringTable[3][4] =
-		{	//   Event validChar,           Event '\',            Event unvalidChar,      Event '"'
-			{{INS_STRING, TX(nothing)},{CTRL_CHAR, TX(nothing)},{FINISH, TX(error)},{FINISH, TX(end)}},			//State INIT
-			{{INS_STRING, TX(nothing)},{CTRL_CHAR, TX(nothing)},{FINISH, TX(error)},{FINISH, TX(end)}},			//State INS_STRING
-			{{INS_STRING, TX(nothing)},{INS_STRING, TX(nothing)},{FINISH, TX(error)},{INS_STRING, TX(nothing)}} //State CTRL_CHAR
+		{	//   Event validChar,				Event '\',				Event unvalidChar,			Event '"'
+			{{INS_STRING, TX(nothing)},		{CTRL_CHAR, TX(nothing)},	{FINISH, TX(error)},	{FINISH, TX(end)}},				//State INIT
+			{{INS_STRING, TX(nothing)},		{CTRL_CHAR, TX(nothing)},	{FINISH, TX(error)},	{FINISH, TX(end)}},				//State INS_STRING
+			{{INS_STRING, TX(nothing)},		{INS_STRING, TX(nothing)},	{FINISH, TX(error)},	{INS_STRING, TX(nothing)}}		 //State CTRL_CHAR
 		};
 
 		void nothing(genericEvent* ev)
