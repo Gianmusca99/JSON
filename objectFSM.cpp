@@ -9,14 +9,37 @@
 
 void objectFSM::error(genericEvent* ev)
 {
-	ev->setType(EV_ERROR);
 	ev->setKey(NULL);
 	return;
 }
 
 void objectFSM::end(genericEvent* ev)
 {
-	ev->setType(EV_QUIT);
 	ev->setKey(NULL);
 	return;
+}
+
+void objectFSM::assignValue(genericEvent* ev)
+{
+	switch (ev->getKey())
+	{
+	case '"':
+		ev->setEvValue(QUOTES);
+		break;
+	case ',':
+		ev->setEvValue(COMMA);
+		break;
+	case ':':
+		ev->setEvValue(COLON);
+		break;
+	case EOF:
+		ev->setEvValue(_EOF);
+		break;
+	case '}':
+		ev->setEvValue(C_BRACE);
+		break;
+	default:
+		ev->setEvValue(UNVALID_CHAR);
+		break;
+	}
 }

@@ -35,8 +35,3 @@ void elementFSM::nextFSM(genericEvent* ev)
 		break;
 	}
 }
-
-void elementFSM::end(genericEvent* ev)
-{
-	
-}

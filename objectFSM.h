@@ -12,7 +12,7 @@
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
 enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, FIN};
-typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, O_BRACE } objectEvents;
+typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, C_BRACE } objectEvents;
 
 /*******************************************************************************
  * CLASS PROTOTYPE
