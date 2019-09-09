@@ -4,7 +4,7 @@
 
 #define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&numberFSM::x))
 enum numberStates : stateType { INIT, CERO, INTEGER, FRACTION, EXPONENT, FINIT };
-typedef enum { DIGIT, CERO, MINUS, PLUS, POINT, EXP, SPACE} numberEvents;
+typedef enum { DIGIT, CERO, MINUS, PLUS, POINT, EXP, COMMA} numberEvents;
 
 class numberFSM;
 
@@ -15,7 +15,7 @@ class numberFSM : public genericFSM
 
 private:
 	const fsmCell fsmTable[5][7] = {
-		//		DIGIT						CERO						MINUS						PLUS						POINT					EXP							SPACE
+		//		DIGIT						CERO						MINUS						PLUS						POINT					EXP							COOMMA
 		{ {INTEGER, TX(nothing)},	{CERO, TX(nothing)},		{INTEGER, TX(nothing)},		{FINIT, TX(error)},			{FINIT, TX(error)},			{FINIT, TX(error)},			{FINIT, TX(error)}	},	//INIT
 		{ {FINIT, TX(error)},		{FINIT, TX(error)},			{FINIT, TX(error)},			{FINIT, TX(error)},			{FRACTION, TX(nothing)},	{EXPONENT, TX(nothing)},	{FINIT, TX(end)}	},	//CERO
 		{ {INTEGER, TX(nothing)},	{INTEGER, TX(nothing)},		{FINIT, TX(error)},			{FINIT, TX(error)},			{FRACTION, TX(nothing)},	{EXPONENT, TX(nothing)},	{FINIT, TX(end)}	},	//INTEGER
@@ -29,13 +29,11 @@ private:
 
 	void error(genericEvent* ev)
 	{
-		ev->setType(EV_ERROR);
 		ev->setKey(NULL);
 	}
 
 	void end(genericEvent* ev)
 	{
-		ev->setType(EV_QUIT);
 		ev->setKey(NULL);
 	}
 
