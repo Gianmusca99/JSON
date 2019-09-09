@@ -11,7 +11,7 @@ class stringFSM : public genericFSM
 {
 	public:
 
-		stringFSM() : genericFSM(&stringTable[0][0], 3, 4, INS_STRING){}
+		stringFSM() : genericFSM(&stringTable[0][0], 3, 4, INS_STRING, (assignType)& assignValue){}
 		int assignValue(short);
 
 	private:
@@ -25,6 +25,7 @@ class stringFSM : public genericFSM
 
 		void error(genericEvent* ev);
 		void end(genericEvent* ev);
+		void assignValue(genericEvent* ev);
 };
 
 

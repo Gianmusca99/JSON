@@ -18,7 +18,7 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 {
 	public:
 	
-	valueFSM() : genericFSM(&valueTable[0][0], 1, 9, INIT_VALUE) {}
+	valueFSM() : genericFSM(&valueTable[0][0], 1, 9, INIT_VALUE, (assignType) &assignValue) {}
 
 	private:
 
@@ -32,6 +32,7 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 
 	void error(genericEvent* ev);
 	void end(genericEvent* ev);
+	void assignValue(genericEvent* ev);
 };
 
 #endif // !VALUEFSM_H

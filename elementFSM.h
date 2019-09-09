@@ -23,7 +23,7 @@ class elementFSM : public genericFSM
 {
 public:
 
-	elementFSM() : genericFSM(&elementTable[0][0], 1, 8, INIT_ELEMENT) {}
+	elementFSM() : genericFSM(&elementTable[0][0], 1, 8, INIT_ELEMENT, (assignType)& assignValue) {}
 	void setStackLevel(uint);
 	uint getStackLevel(void);
 
@@ -38,6 +38,7 @@ private:
 
 	void nextFSM(genericEvent* ev);
 	void end(genericEvent* ev);
+	void assignValue(genericEvent* ev);
 	
 	genericFSM* stackFSM[100];
 	uint stackLevel;

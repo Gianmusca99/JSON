@@ -23,7 +23,7 @@ class objectFSM : public genericFSM
 {
 	public:
 	
-	objectFSM() : genericFSM(&objectTable[0][0], 5, 6, INIT_OBJ) {}
+	objectFSM() : genericFSM(&objectTable[0][0], 5, 6, INIT_OBJ, (assignType) &assignValue) {}
 
 	private:
 
@@ -39,6 +39,7 @@ class objectFSM : public genericFSM
 
 	void error(genericEvent* ev);
 	void end(genericEvent* ev);
+	void assignValue(genericEvent* ev);
 
 };
 
