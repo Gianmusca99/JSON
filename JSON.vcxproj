@@ -136,13 +136,16 @@
   <ItemGroup>
     <ClCompile Include="elementFSM.cpp" />
     <ClCompile Include="eventClass.cpp" />
+    <ClCompile Include="falseFSM.cpp" />
     <ClCompile Include="genericFSM.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="numberFSM.cpp" />
     <ClCompile Include="objectFSM.cpp" />
     <ClCompile Include="parseCallback.cpp" />
     <ClCompile Include="parseCmdLine.cpp" />
+    <ClCompile Include="null.cpp" />
     <ClCompile Include="stringFSM.cpp" />
+    <ClCompile Include="trueFSM.cpp" />
     <ClCompile Include="valueFSM.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

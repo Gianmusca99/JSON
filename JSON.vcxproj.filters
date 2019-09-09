@@ -74,5 +74,14 @@
     <ClCompile Include="elementFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="trueFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="falseFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="null.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
