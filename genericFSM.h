@@ -8,6 +8,8 @@ class genericFSM;
 using stateType = uint;
 using eventType = uint;
 
+typedef void (genericFSM::*assignType) (genericEvent*);
+
 struct fsmCell
 {
 	stateType nextState;
@@ -19,7 +21,7 @@ class genericFSM
 	public:
 
 	genericFSM();
-	genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState);
+	genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState, assignType newAssignValue);
 	void setFSMTable(const fsmCell*);
 	void cycle(eventGenerator* generator);
 	void nothing(genericEvent* ev);
@@ -31,7 +33,7 @@ class genericFSM
 	uint lineCount;
 	uint colCount;
 	const fsmCell* FSMTable;
-	void (genericFSM::* assignValue) (genericEvent*);
+	assignType assignValue;
 
 };
 

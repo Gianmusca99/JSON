@@ -5,17 +5,19 @@
 genericFSM::genericFSM(void)
 {
 	FSMTable = NULL;
+	assignValue = NULL;
 	lineCount = 0;
 	colCount = 0;
 	state = NULL;
 }
 
-genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState)
+genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState, assignType newAssignValue)
 {
 	FSMTable = table;
 	lineCount = lines;
 	colCount = cols;
 	state = initState;
+	assignValue = newAssignValue;
 }
 
 void genericFSM::cycle(eventGenerator* generator)
