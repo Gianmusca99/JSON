@@ -15,6 +15,7 @@ class falseFSM : public genericFSM
 {
 
 private:
+
 	const fsmCell fsmTable[5][6] = {
 		//		'A'						'L'						'S'						'E'					OTHER					END_CHAR
 		{ {S_A, TX(nothing)},	{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_F
