@@ -28,6 +28,7 @@ class genericFSM
 	void nothing(genericEvent* ev);
 	stateType getState(void);
 
+
 	private:
 	stateType state;
 	uint lineCount;

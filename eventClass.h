@@ -10,15 +10,15 @@ class eventGenerator;
 class genericEvent {
 
 	public:
-		genericEvent(int initEvValue, char initKey);
+		genericEvent(int initEvValue, short initKey);
 		int getEvValue();
-		char getKey();
+		short getKey();
 		void setEvValue(int);
-		void setKey(char);
+		void setKey(short);
 
 	private:
 		int evValue;
-		char key;
+		short key;
 };
 
 /***************************************************************

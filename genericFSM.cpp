@@ -26,6 +26,7 @@ void genericFSM::cycle(eventGenerator* generator)
 	while (state != END)
 	{
 		ev = generator->getNextEvent();
+
 		value = ev->getEvValue();
 
 		if (value != NO_VALUE)

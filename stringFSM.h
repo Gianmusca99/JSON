@@ -12,6 +12,7 @@ class stringFSM : public genericFSM
 	public:
 
 		stringFSM() : genericFSM(&stringTable[0][0], 3, 4, INS_STRING){}
+		int assignValue(short);
 
 	private:
 

@@ -21,7 +21,7 @@ void elementFSM::nextFSM(genericEvent* ev)
 	case INIT_ELEMENT:
 		break;
 	case STRING:
-		stackFSM[stackLevel] = new stringFSM(stringTable);
+		stackFSM[stackLevel] = new stringFSM();
 		break;
 	case OBJECT:
 		break;

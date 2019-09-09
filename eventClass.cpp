@@ -6,48 +6,57 @@ using namespace std;
 /***************************************************************
 *						GENERIC EVENT
 ***************************************************************/
-genericEvent::genericEvent(int initEvValue = 0, char initKey = '\0') {
+genericEvent::genericEvent(int initEvValue = 0, short initKey = '\0') 
+{
 	evValue = initEvValue;
 	key = initKey;
 }
 
 
-int genericEvent::getEvValue(void) {
+int genericEvent::getEvValue(void) 
+{
 	return evValue;
 }
 
-char genericEvent::getKey(void) {
+short genericEvent::getKey(void) 
+{
 	return key;
 }
 
 
-void genericEvent::setEvValue(int newEvValue) {
+void genericEvent::setEvValue(int newEvValue) 
+{
 	evValue = newEvValue;
 }
 
-void genericEvent::setKey(char newKey) {
+void genericEvent::setKey(short newKey) 
+{
 	key = newKey;
 }
 
 /***************************************************************
 *						EVENT GENERATOR
 ***************************************************************/
-eventGenerator::eventGenerator(int initLineCount = 0, FILE* initFile = NULL) {
+eventGenerator::eventGenerator(int initLineCount = 0, FILE* initFile = NULL)
+{
 	lastEvent = new genericEvent;
 	currentEvent = new genericEvent;
 	lineCount = initLineCount;
 	file = initFile;
 }
 
-genericEvent* eventGenerator::getLastEvent(void) {
+genericEvent* eventGenerator::getLastEvent(void) 
+{
 	return lastEvent;
 }
 
-int eventGenerator::getLineCount(void) {
+int eventGenerator::getLineCount(void) 
+{
 	return lineCount;
 }
 
-genericEvent* eventGenerator::getNextEvent() {
+genericEvent* eventGenerator::getNextEvent() 
+{
 	short c;
 	if ((c = fgetc(file)) != EOF) 
 	{
@@ -69,7 +78,8 @@ genericEvent* eventGenerator::getNextEvent() {
 }
 
 
-void eventGenerator::setLineCount(int newLineCount) {
+void eventGenerator::setLineCount(int newLineCount) 
+{
 	lineCount = newLineCount;
 }
 
