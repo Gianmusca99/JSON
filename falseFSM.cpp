@@ -25,15 +25,6 @@ private:
 		{ {FINIT, TX(error)},	{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(end)}	},	//S_E
 	};
 
-	void error(genericEvent* ev)
-	{
-		ev->setKey(NULL);
-	}
-
-	void end(genericEvent* ev)
-	{
-		ev->setKey(NULL);
-	}
 
 public:
 	falseFSM() :genericFSM(&fsmTable[0][0], 5, 6, S_F) {}

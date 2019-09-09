@@ -25,7 +25,7 @@ void genericFSM::cycle(eventGenerator* generator)
 	genericEvent* ev;
 	int value;
 
-	while (state != END)
+	while (state != END && state != ERROR)
 	{
 		ev = generator->getNextEvent();
 		(this->*assignValue)(ev);
@@ -50,6 +50,19 @@ void genericFSM::nothing(genericEvent* ev)
 {
 	return;
 }
+
+void genericFSM::end(genericEvent* ev)
+{
+	state = END;
+	return;
+}
+
+void genericFSM::error(genericEvent* ev)
+{
+	state = ERROR;
+	return;
+}
+
 
 void genericFSM::setFSMTable(const fsmCell* newTable)
 {

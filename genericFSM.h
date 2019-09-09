@@ -25,6 +25,8 @@ class genericFSM
 	void setFSMTable(const fsmCell*);
 	void cycle(eventGenerator* generator);
 	void nothing(genericEvent* ev);
+	void end(genericEvent* ev);
+	void error(genericEvent* ev);
 	stateType getState(void);
 
 

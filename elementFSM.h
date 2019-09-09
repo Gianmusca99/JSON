@@ -37,7 +37,6 @@ private:
 	};
 
 	void nextFSM(genericEvent* ev);
-	void end(genericEvent* ev);
 	void assignValue(genericEvent* ev);
 	
 	genericFSM* stackFSM[100];
