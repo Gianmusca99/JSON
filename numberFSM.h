@@ -37,8 +37,6 @@ private:
 		{ {EXPONENT, TX(nothing)},	{INTEGER, TX(nothing)},		{EXPONENT, TX(nothing)},	{EXPONENT, TX(nothing)},	{FINIT, TX(error)},			{FINIT, TX(error)},			{FINIT, TX(end)},	{FINIT, TX(error)}	},	//EXPONENT
 	};
 
-	void error(genericEvent* ev);
-	void end(genericEvent* ev);
 	void assignValue(genericEvent* ev);
 
 };

@@ -132,6 +132,7 @@
     <ClInclude Include="parseCmdLine.h" />
     <ClInclude Include="parseCallback.h" />
     <ClInclude Include="stringFSM.h" />
+    <ClInclude Include="trueFSM.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="valueFSM.h" />
   </ItemGroup>
