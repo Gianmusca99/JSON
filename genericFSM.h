@@ -30,7 +30,7 @@ class genericFSM
 	void error(genericEvent* ev);
 	stateType getState(void);
 	void setState(stateType);
-	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	virtual void nextFSM(genericFSM** stackFSM, uint& stackLevel);
 	void returnFSM(genericFSM** stackFSM, uint& stackLevel);
 
 

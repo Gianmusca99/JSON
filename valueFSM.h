@@ -38,7 +38,7 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 	};
 
 	void assignValue(genericEvent* ev);
-	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	void nextFSM(genericFSM** stackFSM, uint& stackLevel) override;
 };
 
 #endif // VALUEFSM_H

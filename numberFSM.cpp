@@ -13,7 +13,7 @@ void numberFSM::assignValue(genericEvent* ev) {
 	else {
 		switch(ev->getKey()){
 		case '0':
-			ev->setEvValue(CERO);
+			ev->setEvValue(EV_CERO);
 			break;
 		case '-':
 			ev->setEvValue(MINUS);
@@ -29,6 +29,10 @@ void numberFSM::assignValue(genericEvent* ev) {
 			break;
 		case ',': case ']': case'}':
 			ev->setEvValue(END_CHAR);
+			fsetpos(ev->getFilePointer(), ev->getPosition());
+			break;
+		case EOF:
+			ev->setEvValue(_EOF);
 			fsetpos(ev->getFilePointer(), ev->getPosition());
 			break;
 		default:
