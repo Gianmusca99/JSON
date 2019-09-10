@@ -24,9 +24,16 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 
 	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&valueFSM::x))
 
-	const fsmCell valueTable[1][9] = {
-		//Event "			Event INT			Event {				Event [				Event "True"		Event "False"		Event "NULL"		Event invalid
-		{{STRING,TX(end)},	{NUMBER,TX(end)},	{OBJECT,TX(end)},	{ARRAY,TX(end)},	{TRUE,TX(end)},		{FALSE,TX(end)},	{_NULL,TX(end)},	{FIN,TX(error)}},	//State INIT_VALUE
+	const fsmCell valueTable[8][9] = {
+		//Event "				Event INT				Event {					Event [					Event "True"			Event "False"			Event "NULL"			Event invalid
+		{{STRING,TX(nothing)},	{NUMBER,TX(nothing)},	{OBJECT,TX(nothing)},	{ARRAY,TX(nothing)},	{TRUE,TX(nothing)},		{FALSE,TX(nothing)},	{_NULL,TX(nothing)},	{FIN,TX(error)}		},	//State INIT_VALUE
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State STRING
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State NUMBER
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State OBJECT
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State ARRAY
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State TRUE
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State FALSE
+		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State NULL
 
 	};
 
