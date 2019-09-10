@@ -74,15 +74,15 @@ void elementFSM::assignValue(genericEvent* ev)
 			break;
 
 		case 't':
-			ev->setEvValue(TRUE);
+			ev->setEvValue(O_TRUE);
 			break;
 
 		case 'f':
-			ev->setEvValue(FALSE);
+			ev->setEvValue(O_FALSE);
 			break;
 
 		case 'n':
-			ev->setEvValue(NUL);
+			ev->setEvValue(O_NULL);
 			break;
 
 		case ',':
