@@ -37,7 +37,7 @@ void genericEvent::setKey(short newKey)
 /***************************************************************
 *						EVENT GENERATOR
 ***************************************************************/
-eventGenerator::eventGenerator(int initLineCount = 0, FILE* initFile = NULL)
+eventGenerator::eventGenerator(int initLineCount, FILE* initFile)
 {
 	lastEvent = new genericEvent;
 	currentEvent = new genericEvent;

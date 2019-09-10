@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="parseCmdLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="parseCallback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="genericFSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -57,14 +51,11 @@
     <ClInclude Include="nullFSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="parseCmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="parseCmdLine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="parseCallback.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="nullFSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parseCmd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

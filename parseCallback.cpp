@@ -32,7 +32,7 @@ static void showErrs(errType error);
  ******************************************************************************/
 int parseCallback(char* key, char* value, void* userData)
 {
-	FILE* data = (FILE*)userData;	//Crea un nuevo puntero para utilizar userData
+	char** data = (char**)userData;	//Crea un nuevo puntero para utilizar userData
 
 	int parseOk = YES; //Devuelve por default error
 	errType error = NO_ERR;
@@ -42,7 +42,7 @@ int parseCallback(char* key, char* value, void* userData)
 		if (!strcmp(ARCHIVO, key))
 		{
 			int i = 0;
-			while (value[i] != '.')	//El nombre del archivo puede ir con un punto en el medio????
+			while (value[i] != '.')	
 			{
 				i++;
 			}
@@ -50,13 +50,15 @@ int parseCallback(char* key, char* value, void* userData)
 			if (!strcmp(".json", value + i))
 			{
 
-				fopen_s(&data,value, "r");
+				*(data) = value;
+
 				if (data == NULL)
 				{
 					parseOk = NO;
 					error = ERR_ARCH;
 				}
 
+				*(userData) = *(data);
 			}
 
 			else 
@@ -81,7 +83,8 @@ int parseCallback(char* key, char* value, void* userData)
 	}
 
 	showErrs(error);
-
+	cout << (char*)userData << endl;
+	
 	return parseOk;
 }
 

@@ -131,8 +131,7 @@
     <ClInclude Include="nullFSM.h" />
     <ClInclude Include="numberFSM.h" />
     <ClInclude Include="objectFSM.h" />
-    <ClInclude Include="parseCmdLine.h" />
-    <ClInclude Include="parseCallback.h" />
+    <ClInclude Include="parseCmd.h" />
     <ClInclude Include="stringFSM.h" />
     <ClInclude Include="trueFSM.h" />
     <ClInclude Include="types.h" />
@@ -147,9 +146,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="numberFSM.cpp" />
     <ClCompile Include="objectFSM.cpp" />
-    <ClCompile Include="parseCallback.cpp" />
-    <ClCompile Include="parseCmdLine.cpp" />
     <ClCompile Include="nullFSM.cpp" />
+    <ClCompile Include="parseCmd.cpp" />
     <ClCompile Include="stringFSM.cpp" />
     <ClCompile Include="trueFSM.cpp" />
     <ClCompile Include="valueFSM.cpp" />
