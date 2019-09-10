@@ -1,26 +1,37 @@
+/*******************************************************************************
+* INCLUDE HEADER FILES
+******************************************************************************/
 #include <iostream>
 #include "genericFSM.h"
 #include "eventClass.h"
 #include "falseFSM.h"
 
+/*******************************************************************************
+ *					 CLASS FUNCTION DEFINITION
+ ******************************************************************************/
+
 using namespace std;
 
 void falseFSM::assignValue(genericEvent* ev) {
 	switch (ev->getKey()) {
-	case 'A':
+	case 'a':
 		ev->setEvValue(EV_A);
 		break;
-	case 'L':
+	case 'l':
 		ev->setEvValue(EV_L);
 		break;
-	case 'S':
+	case 's':
 		ev->setEvValue(EV_S);
 		break;
-	case 'E':
+	case 'e':
 		ev->setEvValue(EV_E);
 		break;
 	case ',': case ']': case'}':
 		ev->setEvValue(END_CHAR);
+		fsetpos(ev->getFilePointer(), ev->getPosition());
+		break;
+	case EOF:
+		ev->setEvValue(_EOF);
 		fsetpos(ev->getFilePointer(), ev->getPosition());
 		break;
 	default:
