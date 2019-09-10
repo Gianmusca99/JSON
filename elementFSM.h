@@ -11,8 +11,8 @@
  /*******************************************************************************
   * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
   ******************************************************************************/
-enum elementStates : stateType { INIT_ELEMENT, STRING, NUMBER, OBJECT, ARRAY, TRUE, FALSE, NUL};
-typedef enum { QUOTES, O_BRACE, O_BRACKETS, O_TRUE, O_FALSE, O_NUMBER, _EOF } elementEvents;
+enum elementStates : stateType { INIT_ELEMENT, STRING, OBJECT, ARRAY, TRUE, FALSE, _NULL, NUMBER};
+typedef enum { QUOTES, O_BRACE, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, O_NUMBER, COMMA, _EOF } elementEvents;
 
 /*******************************************************************************
  * CLASS PROTOTYPE
@@ -31,7 +31,7 @@ private:
 
 #define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&elementFSM::x))
 
-	const fsmCell elementTable[1][8] = {
+	const fsmCell elementTable[1][9] = {
 		//Event "					Event {						Event [					Event true			Event false				Event number			Event ','						Event EOF
 		{{STRING,TX(nextFSM)},	{OBJECT,TX(nextFSM)},		{ARRAY,TX(nextFSM)},	{TRUE,TX(nextFSM)},		{FALSE,TX(nextFSM)},	{NUMBER,TX(nextFSM)},	{INIT_ELEMENT, TX(nothing)},	{END, TX(end)}}		//State INIT_ELEMENT
 	};
