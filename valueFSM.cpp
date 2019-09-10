@@ -9,7 +9,7 @@
 
 void valueFSM::assignValue(genericEvent* ev)
 {
-	if ('0'<= (ev->getKey()) || (ev->getKey()) <= '9' || ev->getKey()=='-')
+	if (('0' >= (ev->getKey()) && (ev->getKey()) <= '9') || ev->getKey()=='-')
 	{
 		ev->setEvValue(INTEGER);
 	}

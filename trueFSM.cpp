@@ -21,6 +21,10 @@ void trueFSM::assignValue(genericEvent* ev) {
 		ev->setEvValue(END_CHAR);
 		fsetpos(ev->getFilePointer(), ev->getPosition());
 		break;
+	case EOF:
+		ev->setEvValue(_EOF);
+		fsetpos(ev->getFilePointer(), ev->getPosition());
+		break;
 	default:
 		ev->setEvValue(OTHER);
 		break;

@@ -38,7 +38,11 @@ void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& s
 
 		f();
 
-		state = FSMTable[state*colCount + value].nextState;
+		if (state != END && state != ERROR)
+		{
+			state = FSMTable[state * colCount + value].nextState;
+		}
+		
 		generator->setLastEvent(generator->getCurrentEvent());
 
 		this->nextFSM(stackFSM, stackLevel);
@@ -68,7 +72,7 @@ void genericFSM::returnFSM(eventGenerator* gen, genericFSM** stackFSM, uint& sta
 			delete(stackFSM[i]);
 		}
 		stackLevel = 0;
-		stackFSM[stackLevel]->setState(ERROR);
+		stackFSM[stackLevel]->setState(END);
 	}
 
 	return;

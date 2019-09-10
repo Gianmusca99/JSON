@@ -41,15 +41,21 @@ void elementFSM::nextFSM(genericFSM** stackFSM, uint &stackLevel)
 		break;
 	case NUMBER:
 		stackLevel++;
+		stackFSM[stackLevel] = new numberFSM();
 		break;
+	}
+	if (getState() != END && getState() != ERROR)
+	{
+		setState(INIT_ELEMENT);
 	}
 }
 
 void elementFSM::assignValue(genericEvent* ev)
 {
-	if ('0' <= (ev->getKey()) || (ev->getKey()) <= '9' || ev->getKey() == '-')
+	if (('0' <= (ev->getKey()) && (ev->getKey()) <= '9') || ev->getKey() == '-')
 	{
-		ev->setEvValue(NUMBER);
+		ev->setEvValue(O_NUMBER);
+		fsetpos(ev->getFilePointer(), ev->getPosition());
 	}
 
 	else {
@@ -77,6 +83,14 @@ void elementFSM::assignValue(genericEvent* ev)
 
 		case 'n':
 			ev->setEvValue(NUL);
+			break;
+
+		case ',':
+			ev->setEvValue(O_COMA);
+			break;
+
+		case EOF:
+			ev->setEvValue(_EOF);
 			break;
 
 		default:

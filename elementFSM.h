@@ -27,14 +27,14 @@ public:
 private:
 
 	enum elementStates : stateType { INIT_ELEMENT, STRING, OBJECT, ARRAY, TRUE, FALSE, NUL, NUMBER };
-	typedef enum { QUOTES, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, O_NUMBER, INVALID_CHAR, _EOF } elementEvents;
+	typedef enum { QUOTES, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, O_NUMBER, O_COMA, INVALID_CHAR, _EOF } elementEvents;
 
 	const fsmCell elementTable[1][10] = {
 		//Event "					Event {						Event [					Event true			Event false				Event null			Event number			Event ','						Event INVALID_CHAR		Event EOF			
 		{{STRING,EX(nothing)},	{OBJECT,EX(nothing)},		{ARRAY,EX(nothing)},	{TRUE,EX(nothing)},		{FALSE,EX(nothing)},	{NUL,EX(nothing)},  {NUMBER,EX(nothing)},	{INIT_ELEMENT, EX(nothing)},	{ERROR, EX(error)},		{END, EX(end)}	}	//State INIT_ELEMENT
 	};
 
-	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	void nextFSM(genericFSM** stackFSM, uint& stackLevel) override;
 	void assignValue(genericEvent* ev);
 
 };

@@ -31,7 +31,7 @@ class genericFSM
 	void identifyError(eventGenerator* generator);
 	stateType getState(void);
 	void setState(stateType);
-	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	virtual void nextFSM(genericFSM** stackFSM, uint& stackLevel);
 	void returnFSM(eventGenerator* gen, genericFSM** stackFSM, uint& stackLevel);
 
 

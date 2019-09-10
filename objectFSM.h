@@ -34,7 +34,7 @@ class objectFSM : public genericFSM
 	};
 
 	void assignValue(genericEvent* ev);
-	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	void nextFSM(genericFSM** stackFSM, uint& stackLevel) override;
 	enum objStates : stateType { INIT_OBJ, STRING, VALUE };
 	typedef enum { QUOTES, COMMA, COLON, C_BRACE, _EOF, INVALID_CHAR } objectEvents;
 
