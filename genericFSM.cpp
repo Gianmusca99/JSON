@@ -11,7 +11,7 @@ genericFSM::genericFSM(void)
 	state = NULL;
 }
 
-genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState, assignType newAssignValue)
+genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState, void (genericFSM::* newAssignValue)(genericEvent* ev))
 {
 	FSMTable = table;
 	lineCount = lines;
@@ -22,22 +22,19 @@ genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType in
 
 void genericFSM::cycle(eventGenerator* generator)
 {
-	genericEvent* ev;
 	int value;
 
 	while (state != END && state != ERROR)
 	{
-		ev = generator->getNextEvent();
-		(this->*assignValue)(ev);
-		value = ev->getEvValue();
+		generator->getNextEvent();
+		(this->*assignValue)(generator->getCurrentEvent());
+		value = (generator->getCurrentEvent())->getEvValue();
 
-		if (value != NO_VALUE)
-		{
-			FSMTable[state * colCount + value].action;
-			state = FSMTable[state*colCount + value].nextState;
-			generator->setLastEvent(ev);
-		}
+		FSMTable[state * colCount + value].action;
+		state = FSMTable[state*colCount + value].nextState;
+		generator->setLastEvent(generator->getCurrentEvent());
 	}
+
 	return;
 }
 

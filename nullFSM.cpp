@@ -5,7 +5,7 @@
 
 
 void nullFSM::assignValue(genericEvent* ev) {
-	switch (ev->getKey) {
+	switch (ev->getKey()) {
 	case 'U':
 		ev->setEvValue(EV_U);
 		break;

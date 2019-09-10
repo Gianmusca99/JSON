@@ -11,8 +11,8 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  *******************************************************************************/
-enum trueStates : stateType { S_T, S_R, S_U, S_E, FINIT };
-typedef enum { EV_R, EV_U, EV_E, OTHER, END_CHAR } trueEvents;
+#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&trueFSM::x))
+
 /*******************************************************************************
  * CLASS PROTOTYPE
  ******************************************************************************/
@@ -22,11 +22,12 @@ class trueFSM : public genericFSM
 {
 public:
 
-	trueFSM() : genericFSM(&trueTable[0][0], 4, 5, S_T, (assignType)& assignValue) {}
+	trueFSM() : genericFSM(&trueTable[0][0], 4, 5, S_T, TX(assignValue)) {}
 
 private:
 
-#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&trueFSM::x))
+	enum trueStates : stateType { S_T, S_R, S_U, S_E, FINIT };
+	typedef enum { EV_R, EV_U, EV_E, OTHER, END_CHAR } trueEvents;
 
 	const fsmCell trueTable[4][5] = {
 		//		'R'						'U'						'E'						OTHER				END_CHAR
