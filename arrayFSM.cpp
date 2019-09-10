@@ -10,24 +10,24 @@
 
 void arrayFSM::assignValue(genericEvent* ev)
 {
-	if ('0' <= (ev->getKey()) || (ev->getKey()) <= '9' || ev->getKey() == '-')
+	if (('0' <= (ev->getKey()) && (ev->getKey()) <= '9') || ev->getKey() == '-')
 	{
-		ev->setEvValue(VALUE);
+		ev->setEvValue(OTHER);
 		fsetpos(ev->getFilePointer(), ev->getPosition());
 	}
 	else {
 		switch (ev->getKey())
 		{
 		case ']':
-			ev->setEvValue(END);
+			ev->setEvValue(O_BRACKET);
 			break;
 
 		case ',':
-			ev->setEvValue(VALUE);
+			ev->setEvValue(COMMA);
 			break;
 
 		case '{': case '[': case '"': case 't': case 'f': case 'n':
-			ev->setEvValue(VALUE);
+			ev->setEvValue(OTHER);
 			fsetpos(ev->getFilePointer(), ev->getPosition());
 			break;
 		default:

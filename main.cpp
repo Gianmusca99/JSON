@@ -52,6 +52,7 @@ int main(int argc, char** argv)
 	{
 		stackFSM[stackLevel]->cycle(&generator, stackFSM, stackLevel);
 	}
+
 	printf("LLEGO A TERMINAR");
 
 	fclose(file);

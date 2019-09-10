@@ -47,7 +47,8 @@ void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& s
 
 		this->nextFSM(stackFSM, stackLevel);
 	}
-	else
+
+	if(state == END || state == ERROR)
 	{
 		returnFSM(generator, stackFSM, stackLevel);
 	}
@@ -57,7 +58,7 @@ void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& s
 
 void genericFSM::returnFSM(eventGenerator* gen, genericFSM** stackFSM, uint& stackLevel)
 {
-	if (state == END)
+	if (state == END && stackLevel > 0)
 	{
 		delete(stackFSM[stackLevel]);
 		stackLevel--;

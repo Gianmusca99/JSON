@@ -20,7 +20,7 @@ class arrayFSM;
 
 class arrayFSM : public genericFSM
 {	public:
-	arrayFSM() : genericFSM(&arrayTable[0][0], 2, 4, VALUE, AX(assignValue)) {}
+	arrayFSM() : genericFSM(&arrayTable[0][0], 2, 4, INIT, AX(assignValue)) {}
 
 	private:
 		enum arrayStates : stateType { INIT, VALUE };
