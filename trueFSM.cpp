@@ -7,7 +7,7 @@
 using namespace std;
 
 void trueFSM::assignValue(genericEvent* ev) {
-	switch (ev->getKey) {
+	switch (ev->getKey()) {
 	case 'R':
 		ev->setEvValue(EV_R);
 		break;

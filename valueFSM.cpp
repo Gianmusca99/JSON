@@ -8,7 +8,7 @@ void valueFSM::assignValue(genericEvent* ev)
 		ev->setEvValue(NUMBER);
 	}
 
-	switch (ev->getKey)
+	switch (ev->getKey())
 	{
 		case '"':
 		ev->setEvValue(QUOTES);

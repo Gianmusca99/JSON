@@ -50,30 +50,37 @@ genericEvent* eventGenerator::getLastEvent(void)
 	return lastEvent;
 }
 
+genericEvent* eventGenerator::getCurrentEvent(void)
+{
+	return currentEvent;
+}
+
 int eventGenerator::getLineCount(void) 
 {
 	return lineCount;
 }
 
-genericEvent* eventGenerator::getNextEvent() 
+void eventGenerator::getNextEvent() 
 {
 	short c = fgetc(file);
 
-	if (c == ' ' || c == '\t')
+	setLastEvent(currentEvent);
+
+	while (c == ' ' || c == '\t')
 	{
-		currentEvent->setKey(NULL);
+		c = fgetc(file);
 	}
 
-	else if (c == '\n')
+	if (c == '\n')
 	{
 		lineCount++;
 	}
-
 	else
 	{
 		currentEvent->setKey(c);
 	}
-	return currentEvent;
+
+	return;
 }
 
 

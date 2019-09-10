@@ -3,8 +3,7 @@
 class genericEvent;
 class eventGenerator;
 
-#define NO_VALUE -2
-#define END -1
+#define END -99
 #define ERROR -39
 
 
@@ -35,7 +34,8 @@ class eventGenerator {
 
 		//GETTERS
 		genericEvent* getLastEvent(void);
-		genericEvent* getNextEvent(void);
+		genericEvent* getCurrentEvent(void);
+		void getNextEvent(void);
 		int getLineCount();
 
 		//SETTERS

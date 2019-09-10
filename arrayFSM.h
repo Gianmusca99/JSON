@@ -11,8 +11,7 @@
  /*******************************************************************************
   * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
   ******************************************************************************/
-enum arrayStates : stateType { INIT_ARRAY, VALUE, MEMBER, FIN };
-typedef enum { O_BRACKET, COMMA, _EOF, INVALID_CHAR } arrayEvents;
+#define AX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&arrayFSM::x))
 
 /*******************************************************************************
  * CLASS PROTOTYPE
@@ -20,17 +19,18 @@ typedef enum { O_BRACKET, COMMA, _EOF, INVALID_CHAR } arrayEvents;
 class arrayFSM;
 
 class arrayFSM : public genericFSM
-{
+{	public:
+	arrayFSM() : genericFSM(&arrayTable[0][0], 1, 9, INIT_ARRAY, AX(assignValue)) {}
 
 	private:
+		enum arrayStates : stateType { INIT_ARRAY, VALUE, MEMBER, FIN };
+		typedef enum { O_BRACKET, COMMA, EOF_, INVALID_CHAR } arrayEvents;
 
-	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&arrayFSM::x))
-
-	const fsmCell fsmTable[5][6] = {
+	const fsmCell arrayTable[5][6] = {
 		//Event ]				Event ,						Event EOF				Invalid char	
-		{{FIN,TX(nothing)},		{FIN,TX(error)},			{FIN,TX(error)},		{FIN,TX(error)},		},	//State INIT_ARRAY
-		{{FIN,TX(nothing)},		{MEMBER,TX(nothing)},		{FIN,TX(error)},		{FIN,TX(error)},		},	//State VALUE
-		{{FIN,TX(error)},		{MEMBER,TX(nothing)},		{FIN,TX(error)},		{FIN,TX(error)},		}	//State MEMBER
+		{{FIN,AX(nothing)},		{FIN,AX(error)},			{FIN,AX(error)},		{FIN,AX(error)},		},	//State INIT_ARRAY
+		{{FIN,AX(nothing)},		{MEMBER,AX(nothing)},		{FIN,AX(error)},		{FIN,AX(error)},		},	//State VALUE
+		{{FIN,AX(error)},		{MEMBER,AX(nothing)},		{FIN,AX(error)},		{FIN,AX(error)},		}	//State MEMBER
 
 	};
 

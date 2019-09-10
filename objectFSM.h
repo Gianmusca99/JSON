@@ -11,8 +11,7 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, FIN};
-typedef enum { QUOTES, COMMA, COLON, C_BRACE, _EOF, INVALID_CHAR} objectEvents;
+#define OX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&objectFSM::x))
 
 /*******************************************************************************
  * CLASS PROTOTYPE
@@ -23,21 +22,21 @@ class objectFSM : public genericFSM
 {
 	public:
 	
-	objectFSM() : genericFSM(&objectTable[0][0], 5, 6, INIT_OBJ, (assignType) &assignValue) {}
+	objectFSM() : genericFSM(&objectTable[0][0], 5, 6, INIT_OBJ, OX(assignValue)) {}
 
 	private:
 
-	#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&objectFSM::x))
-
 	const fsmCell objectTable[5][6] = {
 		//Event "				Event ,						Event :					Event }					Invalid char		Event EOF
-		{{STRING,TX(end)},		{FIN,TX(error)},			{FIN,TX(error)},		{FIN,TX(nothing)},		{FIN,TX(error)},	{FIN,TX(error)}		},	//State INIT_OBJ
-		{{FIN,TX(error)},		{FIN,TX(error)},			{VALUE,TX(end)},		{STRING,TX(end)},		{FIN,TX(error)},	{FIN,TX(error)}		},	//State STRING
-		{{FIN,TX(error)},		{MEMBER,TX(nothing)},		{FIN,TX(error)},		{FIN,TX(nothing)},		{FIN,TX(error)},	{FIN,TX(error)}		},	//State VALUE
-		{{STRING,TX(end)},		{FIN,TX(error)},			{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},	{FIN,TX(error)}		}	//State MEMBER
+		{{STRING,OX(end)},		{FIN,OX(error)},			{FIN,OX(error)},		{FIN,OX(nothing)},		{FIN,OX(error)},	{FIN,OX(error)}		},	//State INIT_OBJ
+		{{FIN,OX(error)},		{FIN,OX(error)},			{VALUE,OX(end)},		{STRING,OX(end)},		{FIN,OX(error)},	{FIN,OX(error)}		},	//State STRING
+		{{FIN,OX(error)},		{MEMBER,OX(nothing)},		{FIN,OX(error)},		{FIN,OX(nothing)},		{FIN,OX(error)},	{FIN,OX(error)}		},	//State VALUE
+		{{STRING,OX(end)},		{FIN,OX(error)},			{FIN,OX(error)},		{FIN,OX(error)},		{FIN,OX(error)},	{FIN,OX(error)}		}	//State MEMBER
 	};
 
 	void assignValue(genericEvent* ev);
+	enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, FIN };
+	typedef enum { QUOTES, COMMA, COLON, C_BRACE, _EOF, INVALID_CHAR } objectEvents;
 
 };
 

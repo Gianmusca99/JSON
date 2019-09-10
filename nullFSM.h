@@ -11,8 +11,8 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  *******************************************************************************/
-enum nullStates : stateType { S_N, S_U, S_L, S_LL, FINIT };
-typedef enum { EV_U, EV_L, OTHER, END_CHAR } nullEvents;
+#define NX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&nullFSM::x))
+
 /*******************************************************************************
  * CLASS PROTOTYPE
  ******************************************************************************/
@@ -22,18 +22,19 @@ class nullFSM : public genericFSM
 {
 public:
 
-	nullFSM() : genericFSM(&nullTable[0][0], 4, 4, S_N, (assignType)& assignValue) {}
+	nullFSM() : genericFSM(&nullTable[0][0], 4, 4, S_N, NX(assignValue)) {}
 
 private:
 
-#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&nullFSM::x))
+	enum nullStates : stateType { S_N, S_U, S_L, S_LL, FINIT };
+	typedef enum { EV_U, EV_L, OTHER, END_CHAR } nullEvents;
 
 	const fsmCell nullTable[4][4] = {
 		//		'U'							'L'					  OTHER					END_CHAR
-		{ {S_U, TX(nothing)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_N
-		{ {FINIT, TX(error)},		{S_L, TX(nothing)},		{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_U
-		{ {FINIT, TX(error)},		{S_LL, TX(nothing)},	{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_L
-		{ {FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(end)}	},	//S_LL
+		{ {S_U, NX(nothing)},		{FINIT, NX(error)},		{FINIT, NX(error)},		{FINIT, NX(error)}	},	//S_N
+		{ {FINIT, NX(error)},		{S_L, NX(nothing)},		{FINIT, NX(error)},		{FINIT, NX(error)}	},	//S_U
+		{ {FINIT, NX(error)},		{S_LL, NX(nothing)},	{FINIT, NX(error)},		{FINIT, NX(error)}	},	//S_L
+		{ {FINIT, NX(error)},		{FINIT, NX(error)},		{FINIT, NX(error)},		{FINIT, NX(end)}	},	//S_LL
 	};
 
 	void assignValue(genericEvent* ev);

@@ -6,12 +6,12 @@
 using namespace std;
 
 void numberFSM::assignValue(genericEvent* ev) {
-	if (('1' < (ev->getKey)) && ((ev->getKey) < '9'))
+	if (('1' <= (ev->getKey())) && ((ev->getKey()) <= '9'))
 	{
 		ev->setEvValue(DIGIT);
 	}
 	else {
-		switch(ev->getKey){
+		switch(ev->getKey()){
 		case '0':
 			ev->setEvValue(CERO);
 			break;

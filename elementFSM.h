@@ -11,8 +11,7 @@
  /*******************************************************************************
   * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
   ******************************************************************************/
-enum elementStates : stateType { INIT_ELEMENT, STRING, NUMBER, OBJECT, ARRAY, TRUE, FALSE, NUL};
-typedef enum { QUOTES, O_BRACE, O_BRACKETS, O_TRUE, O_FALSE, O_NUMBER, _EOF } elementEvents;
+#define EX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&elementFSM::x))
 
 /*******************************************************************************
  * CLASS PROTOTYPE
@@ -23,17 +22,21 @@ class elementFSM : public genericFSM
 {
 public:
 
-	elementFSM() : genericFSM(&elementTable[0][0], 1, 8, INIT_ELEMENT, (assignType)& assignValue) {}
+	elementFSM() : genericFSM(&elementTable[0][0], 1, 9, INIT_ELEMENT, EX(assignValue)) {
+		stackLevel = 0;
+	}
 	void setStackLevel(uint);
 	uint getStackLevel(void);
+	void returnFSM(genericEvent* ev);
 
 private:
 
-#define TX(x)  (static_cast<void (genericFSM::*)(genericEvent*)>(&elementFSM::x))
+	enum elementStates : stateType { INIT_ELEMENT, STRING, NUMBER, OBJECT, ARRAY, TRUE, FALSE, NUL, FINIT };
+	typedef enum { QUOTES, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NUMBER, INVALID_CHAR, _EOF } elementEvents;
 
-	const fsmCell elementTable[1][8] = {
-		//Event "					Event {						Event [					Event true			Event false				Event number			Event ','						Event EOF
-		{{STRING,TX(nextFSM)},	{OBJECT,TX(nextFSM)},		{ARRAY,TX(nextFSM)},	{TRUE,TX(nextFSM)},		{FALSE,TX(nextFSM)},	{NUMBER,TX(nextFSM)},	{INIT_ELEMENT, TX(nothing)},	{END, TX(end)}}		//State INIT_ELEMENT
+	const fsmCell elementTable[1][9] = {
+		//Event "					Event {						Event [					Event true			Event false				Event number			Event ','						Event INVALID_CHAR		Event EOF			
+		{{STRING,EX(nextFSM)},	{OBJECT,EX(nextFSM)},		{ARRAY,EX(nextFSM)},	{TRUE,EX(nextFSM)},		{FALSE,EX(nextFSM)},	{NUMBER,EX(nextFSM)},	{INIT_ELEMENT, EX(nothing)},	{FINIT, EX(error)},		{FINIT, EX(end)}}		//State INIT_ELEMENT
 	};
 
 	void nextFSM(genericEvent* ev);
