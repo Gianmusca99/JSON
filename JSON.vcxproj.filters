@@ -51,6 +51,12 @@
     <ClInclude Include="trueFSM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="falseFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nullFSM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="parseCmdLine.cpp">
@@ -89,10 +95,10 @@
     <ClCompile Include="falseFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="null.cpp">
+    <ClCompile Include="arrayFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayFSM.cpp">
+    <ClCompile Include="nullFSM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
