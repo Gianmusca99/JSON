@@ -44,7 +44,7 @@ int parseCallback(char* key, char* value, void* userData)
 			int i = 0;
 			while (value[i] != '.')	//El nombre del archivo puede ir con un punto en el medio????
 			{
-				i++;
+				
 			}
 
 			if (!strcmp(".json", value + i))

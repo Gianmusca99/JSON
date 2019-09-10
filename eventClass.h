@@ -16,12 +16,19 @@ class genericEvent {
 		genericEvent(int initEvValue, short initKey);
 		int getEvValue();
 		short getKey();
+		fpos_t* getPosition(void);
 		void setEvValue(int);
 		void setKey(short);
+		void setPosition(fpos_t);
+		FILE* getFilePointer(void);
+		void setFilePointer(FILE*);
 
 	private:
 		int evValue;
 		short key;
+		FILE* file;
+		fpos_t position;
+		fpos_t* pPosition;
 };
 
 /***************************************************************
@@ -37,11 +44,13 @@ class eventGenerator {
 		genericEvent* getCurrentEvent(void);
 		void getNextEvent(void);
 		int getLineCount();
+		FILE* getFilePointer(void);
 
 		//SETTERS
 		void setLineCount(int);
 		void setLastEvent(genericEvent*);
 		void setFilePointer(FILE*);
+		
 
 	private:
 		genericEvent* lastEvent;

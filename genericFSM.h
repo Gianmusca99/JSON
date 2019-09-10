@@ -24,11 +24,14 @@ class genericFSM
 	genericFSM();
 	genericFSM(const fsmCell* table, uint lines, uint cols, stateType initState, void (genericFSM::* newAssignValue)(genericEvent* ev));
 	void setFSMTable(const fsmCell*);
-	void cycle(eventGenerator* generator);
+	void cycle(eventGenerator* generator, genericFSM** stackFSM, uint& stackLevel);
 	void nothing(genericEvent* ev);
 	void end(genericEvent* ev);
 	void error(genericEvent* ev);
 	stateType getState(void);
+	void setState(stateType);
+	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	void returnFSM(genericFSM** stackFSM, uint& stackLevel);
 
 
 	private:

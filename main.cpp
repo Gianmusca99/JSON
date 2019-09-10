@@ -8,6 +8,16 @@
 #include "parseCmdLine.h"
 #include "eventClass.h"
 #include "elementFSM.h"
+#include "eventClass.h"
+#include "falseFSM.h"
+#include "genericFSM.h"
+#include "nullFSM.h"
+#include "numberFSM.h"
+#include "objectFSM.h"
+#include "stringFSM.h"
+#include "trueFSM.h"
+#include "valueFSM.h"
+#include "arrayFSM.h"
 
 using namespace std;
 
@@ -25,11 +35,18 @@ int main(int argc, char** argv)
 	}
 
 	eventGenerator generator(1, userData);
-	elementFSM element;
 
-	while (element.getState() != EOF) {
-		element.cycle(&generator);
-		element.returnFSM(generator.getCurrentEvent());
+	genericFSM* stackFSM[100];
+	uint stackLevel = 0;
+
+	elementFSM masterFSM;
+	stackFSM[stackLevel] = &masterFSM;
+
+	genericFSM* currentFSM;
+
+	while (masterFSM.getState() != END)
+	{
+		stackFSM[stackLevel]->cycle(&generator, stackFSM, stackLevel);
 	}
 	printf("LLEGO A TERMINAR");
 

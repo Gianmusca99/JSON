@@ -26,20 +26,19 @@ public:
 
 private:
 
-	enum numberStates : stateType { INIT, CERO, INTEGER, FRACTION, EXPONENT, FINIT };
+	enum numberStates : stateType { INIT, CERO, INTEGER, FRACTION, EXPONENT};
 	typedef enum { DIGIT, EV_CERO, MINUS, PLUS, POINT, EXP, END_CHAR, INVALID } numberEvents;
 
 	const fsmCell numberTable[5][8] = {
 		//		DIGIT							EV_CERO							MINUS							PLUS							POINT							EXP							END_CHAR				INVALID
-		{ {INTEGER, NUMX(nothing)},		{CERO, NUMX(nothing)},			{INTEGER, NUMX(nothing)},		{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FINIT, NUMX(error)},	{FINIT, NUMX(error)}	},	//INIT
-		{ {FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FRACTION, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{FINIT, NUMX(end)},		{FINIT, NUMX(error)}	},	//CERO
-		{ {INTEGER, NUMX(nothing)},		{INTEGER, NUMX(nothing)},		{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FRACTION, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{FINIT, NUMX(end)},		{FINIT, NUMX(error)}	},	//INTEGER
-		{ {FRACTION, NUMX(nothing)},	{INTEGER, NUMX(nothing)},		{FRACTION, NUMX(error)},		{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{EXPONENT, NUMX(nothing)},		{FINIT, NUMX(end)},		{FINIT, NUMX(error)}	},	//FRACTION
-		{ {EXPONENT, NUMX(nothing)},	{INTEGER, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{FINIT, NUMX(error)},			{FINIT, NUMX(error)},			{FINIT, NUMX(end)},		{FINIT, NUMX(error)}	},	//EXPONENT
+		{ {INTEGER, NUMX(nothing)},		{CERO, NUMX(nothing)},			{INTEGER, NUMX(nothing)},		{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{END, NUMX(end)},		{ERROR, NUMX(error)}	},	//INIT
+		{ {ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{FRACTION, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{END, NUMX(end)},		{ERROR, NUMX(error)}	},	//CERO
+		{ {INTEGER, NUMX(nothing)},		{INTEGER, NUMX(nothing)},		{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{FRACTION, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{END, NUMX(end)},		{ERROR, NUMX(error)}	},	//INTEGER
+		{ {FRACTION, NUMX(nothing)},	{INTEGER, NUMX(nothing)},		{FRACTION, NUMX(error)},		{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{EXPONENT, NUMX(nothing)},		{END, NUMX(end)},		{ERROR, NUMX(error)}	},	//FRACTION
+		{ {EXPONENT, NUMX(nothing)},	{INTEGER, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{EXPONENT, NUMX(nothing)},		{ERROR, NUMX(error)},			{ERROR, NUMX(error)},			{END, NUMX(end)},		{ERROR, NUMX(error)}	},	//EXPONENT
 	};
 
 	void assignValue(genericEvent* ev);
-
 };
 
 #endif // NUMBERFSM_H

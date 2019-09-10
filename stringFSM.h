@@ -11,14 +11,14 @@ class stringFSM : public genericFSM
 		stringFSM() : genericFSM(&stringTable[0][0], 3, 4, INS_STRING, SX(assignValue)){}
 
 	private:
-		enum stringStates : stateType { INIT, INS_STRING, CTRL_CHAR, FINISH };
+		enum stringStates : stateType { INIT, INS_STRING, CTRL_CHAR};
 		typedef enum { VALID_CHAR, BACKSLASH, QUOTES, _EOF } stringEvents;
 
 		const fsmCell stringTable[3][4] =
 		{	//   Event validChar,				Event '\\',				Event '"',						Event EOF
-			{{INS_STRING, SX(nothing)},		{CTRL_CHAR, SX(nothing)},	{FINISH, SX(end)},			{FINISH, SX(error)}},		//State INIT
-			{{INS_STRING, SX(nothing)},		{CTRL_CHAR, SX(nothing)},	{FINISH, SX(end)},			{FINISH, SX(error)}},		//State INS_STRING
-			{{INS_STRING, SX(nothing)},		{INS_STRING, SX(nothing)},	{INS_STRING, SX(nothing)},	{FINISH, SX(error)}}		//State CTRL_CHAR
+			{{INS_STRING, SX(nothing)},		{CTRL_CHAR, SX(nothing)},	{END, SX(end)},				{ERROR, SX(error)}},		//State INIT
+			{{INS_STRING, SX(nothing)},		{CTRL_CHAR, SX(nothing)},	{END, SX(end)},				{ERROR, SX(error)}},		//State INS_STRING
+			{{INS_STRING, SX(nothing)},		{INS_STRING, SX(nothing)},	{INS_STRING, SX(nothing)},	{ERROR, SX(error)}}			//State CTRL_CHAR
 		};
 
 		void error(genericEvent* ev);
