@@ -10,19 +10,30 @@
 
 void arrayFSM::assignValue(genericEvent* ev)
 {
-	switch (ev->getKey())
+	if ('0' <= (ev->getKey()) || (ev->getKey()) <= '9' || ev->getKey() == '-')
 	{
-	case ']':
-		ev->setEvValue(FIN);
-		break;
+		ev->setEvValue(VALUE);
+		fsetpos(ev->getFilePointer(), ev->getPosition());
+	}
+	else {
+		switch (ev->getKey())
+		{
+		case ']':
+			ev->setEvValue(END);
+			break;
 
-	case ',':
-		ev->setEvValue(MEMBER);
-		break;
+		case ',':
+			ev->setEvValue(VALUE);
+			break;
 
-	default:
-		ev->setEvValue(INVALID_CHAR);
-		break;
+		case '{': case '[': case '"': case 't': case 'f': case 'n':
+			ev->setEvValue(VALUE);
+			fsetpos(ev->getFilePointer(), ev->getPosition());
+			break;
+		default:
+			ev->setEvValue(INVALID_CHAR);
+			break;
+		}
 	}
 }
 
@@ -30,8 +41,6 @@ void arrayFSM::nextFSM(genericFSM** stackFSM, uint& stackLevel)
 {
 	switch (getState())
 	{
-	case INIT_ARRAY:
-		break;
 	case VALUE:
 		stackLevel++;
 		stackFSM[stackLevel] = new valueFSM();

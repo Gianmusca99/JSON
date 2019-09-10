@@ -3,8 +3,8 @@
 class genericEvent;
 class eventGenerator;
 
-#define END -99
-#define ERROR -39
+#define END 999
+#define ERROR 666
 
 
 /***************************************************************

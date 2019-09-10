@@ -20,16 +20,16 @@ class arrayFSM;
 
 class arrayFSM : public genericFSM
 {	public:
-	arrayFSM() : genericFSM(&arrayTable[0][0], 1, 9, INIT_ARRAY, AX(assignValue)) {}
+	arrayFSM() : genericFSM(&arrayTable[0][0], 2, 4, VALUE, AX(assignValue)) {}
 
 	private:
-		enum arrayStates : stateType { INIT_ARRAY, VALUE };
-		typedef enum { O_BRACKET, COMMA, INVALID_CHAR } arrayEvents;
+		enum arrayStates : stateType { INIT, VALUE };
+		typedef enum { O_BRACKET, COMMA, OTHER, INVALID_CHAR } arrayEvents;
 
-	const fsmCell arrayTable[5][6] = {
-		//Event ]				Event ,						Event EOF				Invalid char	
-		{{FIN,AX(nothing)},		{FIN,AX(error)},			{FIN,AX(error)},		{FIN,AX(error)},		},	//State INIT_ARRAY
-		{{FIN,AX(nothing)},		{MEMBER,AX(nothing)},		{FIN,AX(error)},		{FIN,AX(error)},		},	//State VALUE
+	const fsmCell arrayTable[2][4] = {
+		//Event ]				Event ,					Event OTHER				Invalid char	
+		{{END, AX(end)},	{ERROR, AX(error)},		{VALUE, AX(nothing)},	{ERROR, AX(error)},	},	//State INIT
+		{{END, AX(end)},	{VALUE, AX(nothing)},	{ERROR, AX(error)},		{ERROR, AX(error)},	},	//State VALUE
 
 	};
 

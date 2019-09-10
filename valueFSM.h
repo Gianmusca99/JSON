@@ -17,7 +17,7 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 {
 	public:
 	
-	valueFSM() : genericFSM(&valueTable[0][0], 1, 9, INIT_VALUE, VX(assignValue)) {}
+	valueFSM() : genericFSM(&valueTable[0][0], 8, 9, INIT_VALUE, VX(assignValue)) {}
 
 	private:
 

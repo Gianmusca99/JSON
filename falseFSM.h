@@ -31,7 +31,7 @@ private:
 
 	const fsmCell falseTable[5][6] = {
 		//		'A'						'L'						'S'						'E'					OTHER					END_CHAR
-		{ {S_A, FX(nothing)},	{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_F
+		{ {S_A, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_F
 		{ {ERROR, FX(error)},		{S_L, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_A
 		{ {ERROR, FX(error)},		{ERROR, FX(error)},		{S_S, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_L
 		{ {ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{S_E, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_S

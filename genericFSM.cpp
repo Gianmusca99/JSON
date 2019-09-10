@@ -2,6 +2,8 @@
 #include "genericFSM.h"
 #include "eventClass.h"
 
+using namespace std;
+
 genericFSM::genericFSM(void)
 {
 	FSMTable = NULL;
@@ -58,6 +60,9 @@ void genericFSM::returnFSM(genericFSM** stackFSM, uint& stackLevel)
 	{
 		//identifyError();
 		//displayError()
+
+		cout << "Hubo un error en la linea:" << lineCount;
+
 		for (uint i = stackLevel; i > 0; i--)
 		{
 			delete(stackFSM[i]);

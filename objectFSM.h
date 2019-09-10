@@ -22,7 +22,7 @@ class objectFSM : public genericFSM
 {
 	public:
 	
-	objectFSM() : genericFSM(&objectTable[0][0], 5, 6, INIT_OBJ, OX(assignValue)) {}
+	objectFSM() : genericFSM(&objectTable[0][0], 3, 6, INIT_OBJ, OX(assignValue)) {}
 
 	private:
 

@@ -34,7 +34,9 @@ int main(int argc, char** argv)
 	}
 
 	FILE* file = NULL;
-	if (fopen_s(&file, userData, "r")) {
+	if (fopen_s(&file, userData, "r")) 
+	{
+		printHelpText();
 		return 0;
 	}
 
@@ -46,8 +48,6 @@ int main(int argc, char** argv)
 	elementFSM masterFSM;
 	stackFSM[stackLevel] = &masterFSM;
 
-	genericFSM* currentFSM;
-
 	while (masterFSM.getState() != END)
 	{
 		stackFSM[stackLevel]->cycle(&generator, stackFSM, stackLevel);
@@ -55,6 +55,7 @@ int main(int argc, char** argv)
 	printf("LLEGO A TERMINAR");
 
 	fclose(file);
+
 	return 0;
 }
 
