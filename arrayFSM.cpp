@@ -1,31 +1,24 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
-#include "objectFSM.h"
+#include"arrayFSM.h"
 
 /*******************************************************************************
-* PRIVATE METHODS
-******************************************************************************/
+ * PRIVATE METHODS
+ ******************************************************************************/
 
-void objectFSM::assignValue(genericEvent* ev)
+void arrayFSM::assignValue(genericEvent* ev)
 {
 	switch (ev->getKey())
 	{
-	case '"':
-		ev->setEvValue(QUOTES);
+	case ']':
+		ev->setEvValue(FIN);
 		break;
+
 	case ',':
-		ev->setEvValue(COMMA);
+		ev->setEvValue(MEMBER);
 		break;
-	case ':':
-		ev->setEvValue(COLON);
-		break;
-	case EOF:
-		ev->setEvValue(_EOF);
-		break;
-	case '}':
-		ev->setEvValue(C_BRACE);
-		break;
+
 	default:
 		ev->setEvValue(INVALID_CHAR);
 		break;

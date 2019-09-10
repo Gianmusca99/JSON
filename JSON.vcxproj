@@ -137,6 +137,7 @@
     <ClInclude Include="valueFSM.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="arrayFSM.cpp" />
     <ClCompile Include="elementFSM.cpp" />
     <ClCompile Include="eventClass.cpp" />
     <ClCompile Include="falseFSM.cpp" />
