@@ -39,6 +39,7 @@ class objectFSM : public genericFSM
 
 	void assignValue(genericEvent* ev);
 
+
 };
 
 #endif // OBJECTFSM_H

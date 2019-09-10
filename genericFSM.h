@@ -4,6 +4,7 @@
 #include "eventClass.h"
 #include "types.h"
 
+
 class genericFSM;
 using stateType = uint;
 using eventType = uint;

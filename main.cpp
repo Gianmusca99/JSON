@@ -6,6 +6,17 @@
 #include <iostream>
 #include "parseCallback.h"
 #include "parseCmdLine.h"
+#include "arrayFSM.h"
+#include "elementFSM.h"
+#include "eventClass.h"
+#include "falseFSM.h"
+#include "genericFSM.h"
+#include "nullFSM.h"
+#include "numberFSM.h"
+#include "objectFSM.h"
+#include "stringFSM.h"
+#include "trueFSM.h"
+#include "valueFSM.h"
 
 using namespace std;
 
@@ -22,6 +33,11 @@ int main(int argc, char** argv)
 		return 0;
 	}
 
+	elementFSM masterFSM;
+	while (masterFSM.getState() != END)
+	{
+
+	}
 
 
 
