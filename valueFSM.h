@@ -11,7 +11,7 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-enum valueStates : stateType { INIT_VALUE, STRING, NUMBER, OBJECT, ARRAY, TRUE, FALSE, _NULL, FIN };
+enum valueStates : stateType { INIT_VALUE, STRING, NUMBER, OBJECT, ARRAY, TRUE, FALSE, NUL, FIN };
 typedef enum { QUOTES, INTEGER, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, INVALID_CHAR } valueEvents;
 
 class valueFSM : public genericFSM //Despues de doble punto o de corchete va una value
@@ -26,7 +26,7 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 
 	const fsmCell valueTable[8][9] = {
 		//Event "				Event INT				Event {					Event [					Event "True"			Event "False"			Event "NULL"			Event invalid
-		{{STRING,TX(nothing)},	{NUMBER,TX(nothing)},	{OBJECT,TX(nothing)},	{ARRAY,TX(nothing)},	{TRUE,TX(nothing)},		{FALSE,TX(nothing)},	{_NULL,TX(nothing)},	{FIN,TX(error)}		},	//State INIT_VALUE
+		{{STRING,TX(nothing)},	{NUMBER,TX(nothing)},	{OBJECT,TX(nothing)},	{ARRAY,TX(nothing)},	{TRUE,TX(nothing)},		{FALSE,TX(nothing)},	{NUL,TX(nothing)},	{FIN,TX(error)}		},	//State INIT_VALUE
 		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State STRING
 		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State NUMBER
 		{{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)}		},	//State OBJECT

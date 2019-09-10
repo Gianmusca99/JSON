@@ -4,6 +4,9 @@
 #include "valueFSM.h"
 #include "stringFSM.h"
 #include "numberFSM.h"
+#include "trueFSM.h"
+#include "falseFSM.h"
+#include "nullFSM.h"
 
 
 void elementFSM::setStackLevel(uint newStack)
@@ -37,7 +40,7 @@ void elementFSM::nextFSM(genericEvent* ev)
 	case FALSE:
 		stackFSM[stackLevel] = new falseFSM();
 		break;
-	case NULL:
+	case NUL:
 		stackFSM[stackLevel] = new nullFSM();
 		break;
 	case NUMBER:
