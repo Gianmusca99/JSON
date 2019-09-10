@@ -1,9 +1,14 @@
+/*******************************************************************************
+* INCLUDE HEADER FILES
+******************************************************************************/
 #include <iostream>
 #include "genericFSM.h"
 #include "eventClass.h"
 #include "nullFSM.h"
 
-
+/*******************************************************************************
+ *					 CLASS FUNCTION DEFINITION
+ ******************************************************************************/
 void nullFSM::assignValue(genericEvent* ev) {
 	switch (ev->getKey()) {
 	case 'u':
