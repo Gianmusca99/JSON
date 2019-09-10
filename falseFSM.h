@@ -26,16 +26,16 @@ public:
 
 private:
 
-	enum falseStates : stateType { S_F, S_A, S_L, S_S, S_E, FINIT };
+	enum falseStates : stateType { S_F, S_A, S_L, S_S, S_E};
 	typedef enum { EV_A, EV_L, EV_S, EV_E, OTHER, END_CHAR } falseEvents;
 
 	const fsmCell falseTable[5][6] = {
 		//		'A'						'L'						'S'						'E'					OTHER					END_CHAR
-		{ {S_A, FX(nothing)},	{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)}	},	//S_F
-		{ {FINIT, FX(error)},	{S_L, FX(nothing)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)}	},	//S_A
-		{ {FINIT, FX(error)},	{FINIT, FX(error)},		{S_S, FX(nothing)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)}	},	//S_L
-		{ {FINIT, FX(error)},	{FINIT, FX(error)},		{FINIT, FX(error)},		{S_E, FX(nothing)},		{FINIT, FX(error)},		{FINIT, FX(error)}	},	//S_S
-		{ {FINIT, FX(error)},	{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(error)},		{FINIT, FX(end)}	},	//S_E
+		{ {S_A, FX(nothing)},	{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_F
+		{ {ERROR, FX(error)},		{S_L, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_A
+		{ {ERROR, FX(error)},		{ERROR, FX(error)},		{S_S, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_L
+		{ {ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{S_E, FX(nothing)},		{ERROR, FX(error)},		{ERROR, FX(error)}	},	//S_S
+		{ {ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{ERROR, FX(error)},		{END, FX(end)}		},	//S_E
 	};
 
 	void assignValue(genericEvent* ev);

@@ -40,6 +40,11 @@ void valueFSM::assignValue(genericEvent* ev)
 		ev->setEvValue(O_NULL);
 		break;
 
+		case ',': case ']': case'}':
+		ev->setEvValue(END_CHAR);
+		fsetpos(ev->getFilePointer(), ev->getPosition());
+		break;
+
 		default:
 		ev->setEvValue(INVALID_CHAR);
 		break;

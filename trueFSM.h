@@ -26,15 +26,15 @@ public:
 
 private:
 
-	enum trueStates : stateType { S_T, S_R, S_U, S_E, FINIT };
+	enum trueStates : stateType { S_T, S_R, S_U, S_E };
 	typedef enum { EV_R, EV_U, EV_E, OTHER, END_CHAR } trueEvents;
 
 	const fsmCell trueTable[4][5] = {
-		//		'R'						'U'						'E'						OTHER				END_CHAR
-		{ {S_R, TX(nothing)},	{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_T
-		{ {FINIT, TX(error)},	{S_U, TX(nothing)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_R
-		{ {FINIT, TX(error)},	{FINIT, TX(error)},		{S_E, TX(nothing)},		{FINIT, TX(error)},		{FINIT, TX(error)}	},	//S_U
-		{ {FINIT, TX(error)},	{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(error)},		{FINIT, TX(end)}	},	//S_E
+		//		'R'						'U'						'E'						OTHER					END_CHAR
+		{ {S_R, TX(nothing)},		{ERROR, TX(error)},		{ERROR, TX(error)},		{ERROR, TX(error)},		{ERROR, TX(error)}	},	//S_T
+		{ {ERROR, TX(error)},		{S_U, TX(nothing)},		{ERROR, TX(error)},		{ERROR, TX(error)},		{ERROR, TX(error)}	},	//S_R
+		{ {ERROR, TX(error)},		{ERROR, TX(error)},		{S_E, TX(nothing)},		{ERROR, TX(error)},		{ERROR, TX(error)}	},	//S_U
+		{ {ERROR, TX(error)},		{ERROR, TX(error)},		{ERROR, TX(error)},		{ERROR, TX(error)},		{END, TX(end)}		},	//S_E
 	};
 
 	void assignValue(genericEvent* ev);

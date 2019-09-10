@@ -26,15 +26,15 @@ public:
 
 private:
 
-	enum nullStates : stateType { S_N, S_U, S_L, S_LL, FINIT };
+	enum nullStates : stateType { S_N, S_U, S_L, S_LL };
 	typedef enum { EV_U, EV_L, OTHER, END_CHAR } nullEvents;
 
 	const fsmCell nullTable[4][4] = {
 		//		'U'							'L'					  OTHER					END_CHAR
-		{ {S_U, NX(nothing)},		{FINIT, NX(error)},		{FINIT, NX(error)},		{FINIT, NX(error)}	},	//S_N
-		{ {FINIT, NX(error)},		{S_L, NX(nothing)},		{FINIT, NX(error)},		{FINIT, NX(error)}	},	//S_U
-		{ {FINIT, NX(error)},		{S_LL, NX(nothing)},	{FINIT, NX(error)},		{FINIT, NX(error)}	},	//S_L
-		{ {FINIT, NX(error)},		{FINIT, NX(error)},		{FINIT, NX(error)},		{FINIT, NX(end)}	},	//S_LL
+		{ {S_U, NX(nothing)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)}	},	//S_N
+		{ {ERROR, NX(error)},		{S_L, NX(nothing)},		{ERROR, NX(error)},		{ERROR, NX(error)}	},	//S_U
+		{ {ERROR, NX(error)},		{S_LL, NX(nothing)},	{ERROR, NX(error)},		{ERROR, NX(error)}	},	//S_L
+		{ {ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{END, NX(end)}		},	//S_LL
 	};
 
 	void assignValue(genericEvent* ev);

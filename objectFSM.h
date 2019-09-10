@@ -28,9 +28,9 @@ class objectFSM : public genericFSM
 
 	const fsmCell objectTable[3][6] = {
 		//Event "				Event ,						Event :					Event }					Invalid char		Event EOF
-		{{STRING,OX(end)},		{ERROR,OX(error)},			{ERROR,OX(error)},		{END,OX(nothing)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State INIT_OBJ
-		{{ERROR,OX(error)},		{ERROR,OX(error)},			{VALUE,OX(end)},		{STRING,OX(end)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State STRING
-		{{ERROR,OX(error)},		{INIT_OBJ,OX(nothing)},		{ERROR,OX(error)},		{END,OX(nothing)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State VALUE
+		{{STRING,OX(end)},		{ERROR,OX(error)},			{ERROR,OX(error)},		{END,OX(end)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State INIT_OBJ
+		{{ERROR,OX(error)},		{ERROR,OX(error)},			{VALUE,OX(end)},		{STRING,OX(end)},	{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State STRING
+		{{ERROR,OX(error)},		{INIT_OBJ,OX(nothing)},		{ERROR,OX(error)},		{END,OX(end)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State VALUE
 	};
 
 	void assignValue(genericEvent* ev);

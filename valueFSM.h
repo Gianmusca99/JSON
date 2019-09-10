@@ -22,18 +22,18 @@ class valueFSM : public genericFSM //Despues de doble punto o de corchete va una
 	private:
 
 	enum valueStates : stateType { INIT_VALUE, STRING, NUMBER, OBJECT, ARRAY, TRUE, FALSE, NUL };
-	typedef enum { QUOTES, INTEGER, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, INVALID_CHAR } valueEvents;
+	typedef enum { QUOTES, INTEGER, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, INVALID_CHAR, END_CHAR } valueEvents;
 
 	const fsmCell valueTable[8][9] = {
-		//Event "				Event INT				Event {					Event [					Event "True"			Event "False"			Event "NULL"			Event invalid
-		{{STRING,VX(nothing)},	{NUMBER,VX(nothing)},	{OBJECT,VX(nothing)},	{ARRAY,VX(nothing)},	{TRUE,VX(nothing)},		{FALSE,VX(nothing)},	{NUL,VX(nothing)},		{ERROR,VX(error)}		},	//State INIT_VALUE
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State STRING
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State NUMBER
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State OBJECT
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State ARRAY
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State TRUE
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State FALSE
-		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)}		},	//State NULL
+		//Event "				Event INT				Event {					Event [					Event "True"			Event "False"			Event "NULL"			Event invalid			Event END_CHAR
+		{{STRING,VX(nothing)},	{NUMBER,VX(nothing)},	{OBJECT,VX(nothing)},	{ARRAY,VX(nothing)},	{TRUE,VX(nothing)},		{FALSE,VX(nothing)},	{NUL,VX(nothing)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State INIT_VALUE
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State STRING
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State NUMBER
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State OBJECT
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State ARRAY
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State TRUE
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State FALSE
+		{{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{ERROR,VX(error)},		{END,VX(end)}	},	//State NULL
 
 	};
 

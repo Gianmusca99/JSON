@@ -23,14 +23,13 @@ class arrayFSM : public genericFSM
 	arrayFSM() : genericFSM(&arrayTable[0][0], 1, 9, INIT_ARRAY, AX(assignValue)) {}
 
 	private:
-		enum arrayStates : stateType { INIT_ARRAY, VALUE, MEMBER, FIN };
-		typedef enum { O_BRACKET, COMMA, EOF_, INVALID_CHAR } arrayEvents;
+		enum arrayStates : stateType { INIT_ARRAY, VALUE };
+		typedef enum { O_BRACKET, COMMA, INVALID_CHAR } arrayEvents;
 
 	const fsmCell arrayTable[5][6] = {
 		//Event ]				Event ,						Event EOF				Invalid char	
 		{{FIN,AX(nothing)},		{FIN,AX(error)},			{FIN,AX(error)},		{FIN,AX(error)},		},	//State INIT_ARRAY
 		{{FIN,AX(nothing)},		{MEMBER,AX(nothing)},		{FIN,AX(error)},		{FIN,AX(error)},		},	//State VALUE
-		{{FIN,AX(error)},		{MEMBER,AX(nothing)},		{FIN,AX(error)},		{FIN,AX(error)},		}	//State MEMBER
 
 	};
 

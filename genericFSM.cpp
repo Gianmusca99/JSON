@@ -27,11 +27,13 @@ void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& s
 	if(state != END && state != ERROR)
 	{
 		generator->getNextEvent();
+		//TURBINA
 		(this->*assignValue)(generator->getCurrentEvent());
 		value = (generator->getCurrentEvent())->getEvValue();
-
+		//ACA TENGO QUE LLAMAR A LA RUTINA DE LA FSM CON EL EVENTO CORRESPONDIENTE
 		FSMTable[state * colCount + value].action;
 		state = FSMTable[state*colCount + value].nextState;
+		//TURBINA
 		generator->setLastEvent(generator->getCurrentEvent());
 
 		this->nextFSM(stackFSM, stackLevel);
