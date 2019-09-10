@@ -63,6 +63,12 @@ genericEvent* eventGenerator::getNextEvent()
 	{
 		currentEvent->setKey(NULL);
 	}
+
+	else if (c == '\n')
+	{
+		lineCount++;
+	}
+
 	else
 	{
 		currentEvent->setKey(c);

@@ -11,7 +11,7 @@
  /*******************************************************************************
   * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
   ******************************************************************************/
-enum arrayStates : stateType { INIT_ARRAY, STRING, VALUE, MEMBER, END };
+enum arrayStates : stateType { INIT_ARRAY, STRING, VALUE, MEMBER, FIN };
 typedef enum { QUOTES, COMMA, COLON, _EOF, UNVALID_CHAR, O_BRACE } arrayEvents;
 
 /*******************************************************************************
@@ -28,14 +28,11 @@ private:
 
 	const fsmCell fsmTable[5][6] = {
 		//Event "				Event ,						Event :					Event EOF				Invalid char		Event }
-		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(nothing)}	},	//State INIT_OBJ
-		{{END,TX(error)},		{END,TX(error)},			{VALUE,TX(end)},		{END,TX(error)},		{END,TX(error)},	{STRING,TX(end)}	},	//State STRING
-		{{END,TX(error)},		{MEMBER,TX(nothing)},		{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(nothing)}	},	//State VALUE
-		{{STRING,TX(end)},		{END,TX(error)},			{END,TX(error)},		{END,TX(error)},		{END,TX(error)},	{END,TX(error)}		}	//State MEMBER
+		{{STRING,TX(end)},		{FIN,TX(error)},			{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},	{FIN,TX(nothing)}	},	//State INIT_OBJ
+		{{FIN,TX(error)},		{FIN,TX(error)},			{VALUE,TX(end)},		{FIN,TX(error)},		{FIN,TX(error)},	{STRING,TX(end)}	},	//State STRING
+		{{FIN,TX(error)},		{MEMBER,TX(nothing)},		{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},	{FIN,TX(nothing)}	},	//State VALUE
+		{{STRING,TX(end)},		{FIN,TX(error)},			{FIN,TX(error)},		{FIN,TX(error)},		{FIN,TX(error)},	{FIN,TX(error)}		}	//State MEMBER
 	};
-
-	void error(genericEvent* ev);
-	void end(genericEvent* ev);
 
 };
 
