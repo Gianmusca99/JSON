@@ -22,19 +22,19 @@ class nullFSM : public genericFSM
 {
 public:
 
-	nullFSM() : genericFSM(&nullTable[0][0], 4, 4, S_N, NX(assignValue)) {}
+	nullFSM() : genericFSM(&nullTable[0][0], 4, 5, S_N, NX(assignValue)) {}
 
 private:
 
 	enum nullStates : stateType { S_N, S_U, S_L, S_LL };
-	typedef enum { EV_U, EV_L, OTHER, END_CHAR } nullEvents;
+	typedef enum { EV_U, EV_L, OTHER, END_CHAR, _EOF } nullEvents;
 
-	const fsmCell nullTable[4][4] = {
-		//		'U'							'L'					  OTHER					END_CHAR
-		{ {S_U, NX(nothing)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)}	},	//S_N
-		{ {ERROR, NX(error)},		{S_L, NX(nothing)},		{ERROR, NX(error)},		{ERROR, NX(error)}	},	//S_U
-		{ {ERROR, NX(error)},		{S_LL, NX(nothing)},	{ERROR, NX(error)},		{ERROR, NX(error)}	},	//S_L
-		{ {ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{END, NX(end)}		},	//S_LL
+	const fsmCell nullTable[4][5] = {
+		//		'U'							'L'					  OTHER					END_CHAR					_EOF	
+		{ {S_U, NX(nothing)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)}},	//S_N
+		{ {ERROR, NX(error)},		{S_L, NX(nothing)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)}},	//S_U
+		{ {ERROR, NX(error)},		{S_LL, NX(nothing)},	{ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)}},	//S_L
+		{ {ERROR, NX(error)},		{ERROR, NX(error)},		{ERROR, NX(error)},		{END, NX(end)},			{END, NX(end)}},		//S_LL
 	};
 
 	void assignValue(genericEvent* ev);
