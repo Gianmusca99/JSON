@@ -35,6 +35,7 @@ class arrayFSM : public genericFSM
 	};
 
 	void assignValue(genericEvent* ev);
+	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
 };
 
 #endif

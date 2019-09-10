@@ -26,16 +26,16 @@ class objectFSM : public genericFSM
 
 	private:
 
-	const fsmCell objectTable[5][6] = {
+	const fsmCell objectTable[3][6] = {
 		//Event "				Event ,						Event :					Event }					Invalid char		Event EOF
-		{{STRING,OX(end)},		{FIN,OX(error)},			{FIN,OX(error)},		{FIN,OX(nothing)},		{FIN,OX(error)},	{FIN,OX(error)}		},	//State INIT_OBJ
-		{{FIN,OX(error)},		{FIN,OX(error)},			{VALUE,OX(end)},		{STRING,OX(end)},		{FIN,OX(error)},	{FIN,OX(error)}		},	//State STRING
-		{{FIN,OX(error)},		{MEMBER,OX(nothing)},		{FIN,OX(error)},		{FIN,OX(nothing)},		{FIN,OX(error)},	{FIN,OX(error)}		},	//State VALUE
-		{{STRING,OX(end)},		{FIN,OX(error)},			{FIN,OX(error)},		{FIN,OX(error)},		{FIN,OX(error)},	{FIN,OX(error)}		}	//State MEMBER
+		{{STRING,OX(end)},		{ERROR,OX(error)},			{ERROR,OX(error)},		{END,OX(nothing)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State INIT_OBJ
+		{{ERROR,OX(error)},		{ERROR,OX(error)},			{VALUE,OX(end)},		{STRING,OX(end)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State STRING
+		{{ERROR,OX(error)},		{INIT_OBJ,OX(nothing)},		{ERROR,OX(error)},		{END,OX(nothing)},		{ERROR,OX(error)},	{ERROR,OX(error)}		},	//State VALUE
 	};
 
 	void assignValue(genericEvent* ev);
-	enum objStates : stateType { INIT_OBJ, STRING, VALUE, MEMBER, FIN };
+	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
+	enum objStates : stateType { INIT_OBJ, STRING, VALUE };
 	typedef enum { QUOTES, COMMA, COLON, C_BRACE, _EOF, INVALID_CHAR } objectEvents;
 
 

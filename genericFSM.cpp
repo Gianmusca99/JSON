@@ -20,11 +20,11 @@ genericFSM::genericFSM(const fsmCell* table, uint lines, uint cols, stateType in
 	assignValue = newAssignValue;
 }
 
-void genericFSM::cycle(eventGenerator* generator)
+void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& stackLevel)
 {
 	int value;
 
-	while (state != END && state != ERROR)
+	if(state != END && state != ERROR)
 	{
 		generator->getNextEvent();
 		(this->*assignValue)(generator->getCurrentEvent());
@@ -33,6 +33,35 @@ void genericFSM::cycle(eventGenerator* generator)
 		FSMTable[state * colCount + value].action;
 		state = FSMTable[state*colCount + value].nextState;
 		generator->setLastEvent(generator->getCurrentEvent());
+
+		this->nextFSM(stackFSM, stackLevel);
+	}
+	else
+	{
+		returnFSM(stackFSM, stackLevel);
+	}
+
+	return;
+}
+
+void genericFSM::returnFSM(genericFSM** stackFSM, uint& stackLevel)
+{
+	if (state == END)
+	{
+		delete(stackFSM[stackLevel]);
+		stackLevel--;
+		printf("Todo piola hasta acá");
+	}
+	else if (state == ERROR)
+	{
+		//identifyError();
+		//displayError()
+		for (uint i = stackLevel; i > 0; i--)
+		{
+			delete(stackFSM[i]);
+		}
+		stackLevel = 0;
+		stackFSM[stackLevel]->setState(ERROR);
 	}
 
 	return;
@@ -41,6 +70,11 @@ void genericFSM::cycle(eventGenerator* generator)
 stateType genericFSM::getState(void)
 {
 	return state;
+}
+
+void genericFSM::setState(stateType newState)
+{
+	state = newState;
 }
 
 void genericFSM::nothing(genericEvent* ev)
@@ -64,4 +98,9 @@ void genericFSM::error(genericEvent* ev)
 void genericFSM::setFSMTable(const fsmCell* newTable)
 {
 	FSMTable = newTable;
+}
+
+void genericFSM::nextFSM(genericFSM** stackFSM, uint& stackLevel)
+{
+	return;
 }

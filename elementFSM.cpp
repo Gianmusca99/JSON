@@ -9,17 +9,7 @@
 #include "nullFSM.h"
 
 
-void elementFSM::setStackLevel(uint newStack)
-{
-	stackLevel = newStack;
-}
-
-uint elementFSM::getStackLevel(void)
-{
-	return stackLevel;
-}
-
-void elementFSM::nextFSM(genericEvent* ev)
+void elementFSM::nextFSM(genericFSM** stackFSM, uint &stackLevel)
 {
 	switch (getState())
 	{
@@ -28,36 +18,28 @@ void elementFSM::nextFSM(genericEvent* ev)
 	case STRING:
 		stackLevel++;
 		stackFSM[stackLevel] = new stringFSM();
-		stackLevel++;
 		break;
 	case OBJECT:
 		stackLevel++;
 		stackFSM[stackLevel] = new objectFSM();
-		stackLevel++;
 		break;
 	case ARRAY:
 		stackLevel++;
 		stackFSM[stackLevel] = new arrayFSM();
-		stackLevel++;
 		break;
 	case TRUE:
 		stackLevel++;
 		stackFSM[stackLevel] = new trueFSM();
-		stackLevel++;
 		break;
 	case FALSE:
 		stackLevel++;
 		stackFSM[stackLevel] = new falseFSM();
-		stackLevel++;
 		break;
 	case NUL:
 		stackLevel++;
 		stackFSM[stackLevel] = new nullFSM();
-		stackLevel++;
 		break;
 	case NUMBER:
-		stackLevel++;
-		stackFSM[stackLevel] = new numberFSM();
 		stackLevel++;
 		break;
 	}
@@ -99,23 +81,6 @@ void elementFSM::assignValue(genericEvent* ev)
 	default:
 		ev->setEvValue(INVALID_CHAR);
 		break;
-	}
-
-	return;
-}
-
-void elementFSM::returnFSM(genericEvent* ev)
-{
-	if (stackFSM[stackLevel]->getState() == END) {
-		delete(stackFSM[stackLevel]);
-		setStackLevel(stackLevel--);
-		printf("Todo piola hasta acá");
-	}
-	else if (stackFSM[stackLevel]->getState() == ERROR) {
-		//identifyError();
-		//displayError()
-		for (uint i = stackLevel; i > 0; i--)
-			delete(stackFSM[i]);
 	}
 
 	return;
