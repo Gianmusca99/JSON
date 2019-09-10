@@ -14,40 +14,42 @@ void valueFSM::assignValue(genericEvent* ev)
 		ev->setEvValue(INTEGER);
 	}
 
-	switch (ev->getKey())
-	{
+	else {
+		switch (ev->getKey())
+		{
 		case '"':
-		ev->setEvValue(QUOTES);
-		break;
+			ev->setEvValue(QUOTES);
+			break;
 
 		case '{':
-		ev->setEvValue(O_BRACES);
-		break;
+			ev->setEvValue(O_BRACES);
+			break;
 
 		case '[':
-		ev->setEvValue(O_BRACKETS);
-		break;
+			ev->setEvValue(O_BRACKETS);
+			break;
 
 		case 't':
-		ev->setEvValue(O_TRUE);
-		break;
+			ev->setEvValue(O_TRUE);
+			break;
 
 		case 'f':
-		ev->setEvValue(O_FALSE);
-		break;
+			ev->setEvValue(O_FALSE);
+			break;
 
 		case 'n':
-		ev->setEvValue(O_NULL);
-		break;
+			ev->setEvValue(O_NULL);
+			break;
 
 		case ',': case ']': case'}':
-		ev->setEvValue(END_CHAR);
-		fsetpos(ev->getFilePointer(), ev->getPosition());
-		break;
+			ev->setEvValue(END_CHAR);
+			fsetpos(ev->getFilePointer(), ev->getPosition());
+			break;
 
 		default:
-		ev->setEvValue(INVALID_CHAR);
-		break;
+			ev->setEvValue(INVALID_CHAR);
+			break;
+		}
 	}
 
 	return;

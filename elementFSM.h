@@ -27,7 +27,7 @@ public:
 private:
 
 	enum elementStates : stateType { INIT_ELEMENT, STRING, OBJECT, ARRAY, TRUE, FALSE, NUL, NUMBER };
-	typedef enum { QUOTES, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NUMBER,O_NULL, INVALID_CHAR, _EOF } elementEvents;
+	typedef enum { QUOTES, O_BRACES, O_BRACKETS, O_TRUE, O_FALSE, O_NULL, O_NUMBER, INVALID_CHAR, _EOF } elementEvents;
 
 	const fsmCell elementTable[1][10] = {
 		//Event "					Event {						Event [					Event true			Event false				Event null			Event number			Event ','						Event INVALID_CHAR		Event EOF			

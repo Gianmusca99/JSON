@@ -1,8 +1,10 @@
 #include <iostream>
+#include <functional>
 #include "genericFSM.h"
 #include "eventClass.h"
 
 using namespace std;
+using namespace std::placeholders;
 
 genericFSM::genericFSM(void)
 {
@@ -33,7 +35,12 @@ void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& s
 		(this->*assignValue)(generator->getCurrentEvent());
 		value = (generator->getCurrentEvent())->getEvValue();
 		//ACA TENGO QUE LLAMAR A LA RUTINA DE LA FSM CON EL EVENTO CORRESPONDIENTE
-		FSMTable[state * colCount + value].action;
+
+		auto f = bind(FSMTable[state * colCount + value].action, this, generator->getCurrentEvent());
+
+		f();
+
+		//FSMTable[state * colCount + value].action(generator->getCurrentEvent());
 		state = FSMTable[state*colCount + value].nextState;
 		//TURBINA
 		generator->setLastEvent(generator->getCurrentEvent());
