@@ -28,10 +28,11 @@ class genericFSM
 	void nothing(genericEvent* ev);
 	void end(genericEvent* ev);
 	void error(genericEvent* ev);
+	void identifyError(eventGenerator* generator);
 	stateType getState(void);
 	void setState(stateType);
 	void nextFSM(genericFSM** stackFSM, uint& stackLevel);
-	void returnFSM(genericFSM** stackFSM, uint& stackLevel);
+	void returnFSM(eventGenerator* gen, genericFSM** stackFSM, uint& stackLevel);
 
 
 	private:

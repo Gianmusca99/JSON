@@ -31,31 +31,27 @@ void genericFSM::cycle(eventGenerator* generator, genericFSM** stackFSM, uint& s
 	if(state != END && state != ERROR)
 	{
 		generator->getNextEvent();
-		//TURBINA
 		(this->*assignValue)(generator->getCurrentEvent());
 		value = (generator->getCurrentEvent())->getEvValue();
-		//ACA TENGO QUE LLAMAR A LA RUTINA DE LA FSM CON EL EVENTO CORRESPONDIENTE
 
 		auto f = bind(FSMTable[state * colCount + value].action, this, generator->getCurrentEvent());
 
 		f();
 
-		//FSMTable[state * colCount + value].action(generator->getCurrentEvent());
 		state = FSMTable[state*colCount + value].nextState;
-		//TURBINA
 		generator->setLastEvent(generator->getCurrentEvent());
 
 		this->nextFSM(stackFSM, stackLevel);
 	}
 	else
 	{
-		returnFSM(stackFSM, stackLevel);
+		returnFSM(generator, stackFSM, stackLevel);
 	}
 
 	return;
 }
 
-void genericFSM::returnFSM(genericFSM** stackFSM, uint& stackLevel)
+void genericFSM::returnFSM(eventGenerator* gen, genericFSM** stackFSM, uint& stackLevel)
 {
 	if (state == END)
 	{
@@ -65,10 +61,7 @@ void genericFSM::returnFSM(genericFSM** stackFSM, uint& stackLevel)
 	}
 	else if (state == ERROR)
 	{
-		//identifyError();
-		//displayError()
-
-		cout << "Hubo un error en la linea:" << lineCount;
+		identifyError(gen);
 
 		for (uint i = stackLevel; i > 0; i--)
 		{
@@ -79,6 +72,25 @@ void genericFSM::returnFSM(genericFSM** stackFSM, uint& stackLevel)
 	}
 
 	return;
+}
+
+void genericFSM::identifyError(eventGenerator* gen)
+{
+	cout << "Error en la linea" << lineCount << endl;
+
+	switch (gen->getCurrentEvent()->getKey())
+	{
+		case EOF:
+			cout << "Falta cerrar un valor" << endl;
+			break;
+		case ',': case '}' : case ']':
+			cout << "Ultimo valor incompleto" << endl;
+			break;
+		default:
+			cout << "Caracter invalido en el bloque local" << endl;
+			break;
+	}
+
 }
 
 stateType genericFSM::getState(void)
@@ -107,7 +119,6 @@ void genericFSM::error(genericEvent* ev)
 	state = ERROR;
 	return;
 }
-
 
 void genericFSM::setFSMTable(const fsmCell* newTable)
 {
